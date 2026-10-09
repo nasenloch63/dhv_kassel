@@ -1,0 +1,10 @@
+node_modules/
+.next/
+.next-previous/
+out/
+*.tsbuildinfo
+.env*
+!.env.example
+.openai/*.local.json
+artifacts/
+public/images/*-original.jpg
