@@ -14,7 +14,7 @@ export interface Event {
   description: string; body: Paragraph[]; source?: Source;
 }
 export const site = {
-  name: "DHV-Ortsgruppe Kassel", origin: "https://dhv-kassel-demo.mightytuna4.chatgpt.site",
+  name: "DHV-Ortsgruppe Kassel", origin: "https://dhv-kassel-demo.vercel.app",
   researchDate: "10.10.2026", contactUrl: "https://hanfverband.de/kontakt",
   groupsUrl: "https://hanfverband.de/aktiv-vor-ort", datesUrl: "https://hanfverband.de/termine",
   localStatus: "Für Kassel wurde bei der Recherche am 10.10.2026 kein Eintrag in der offiziellen DHV-Ortsgruppenliste gefunden. Eine offizielle Ortsgruppe, lokale Ansprechpartner und Termine sind hier daher nicht bestätigt.",

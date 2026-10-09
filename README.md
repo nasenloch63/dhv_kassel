@@ -2,6 +2,12 @@
 
 Nicht offizielle, responsive Demowebsite. Eine Ortsgruppe Kassel ist anhand der offiziellen DHV-Liste am 10.10.2026 nicht bestaetigt. Keine Zugangsdaten erforderlich.
 
+## Vercel
+
+Produktionsadresse: https://dhv-kassel-demo.vercel.app
+
+Vercel-Projekt `dhv-kassel-demo` im Team `Naser Solutions`, verbunden mit `nasenloch63/dhv_kassel`. Der Produktionszweig ist `main`. Die Demo bleibt mit `noindex` gekennzeichnet. Der Zugang richtet sich nach den Deployment-Protection-Einstellungen des Vercel-Projekts.
+
 ## Lokal starten
 
 Node.js 20.9 oder neuer und pnpm verwenden:
