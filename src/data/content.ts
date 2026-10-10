@@ -1,25 +1,81 @@
-export type ContentStatus = "verified" | "demo";
+export type ContentStatus = "verified" | "reported" | "planned" | "demo";
 export type Category = "Ortsgruppe" | "Aktionen" | "News";
 export interface Source { label: string; url: string; checkedAt: string }
 export interface Paragraph { heading?: string; text: string }
+export interface MediaAsset {
+  src: string; alt: string; caption: string; credit: string;
+  width: number; height: number; fit?: "cover" | "contain";
+}
 export interface Post {
   id: string; slug: string; title: string; date: string; category: Category;
-  teaser: string; status: ContentStatus; visual: "kassel" | "news" | "action";
+  teaser: string; status: ContentStatus; visual: "kassel" | "news" | "action" | "event";
   readingMinutes: number; body: Paragraph[]; source?: Source;
+  image?: MediaAsset; gallery?: MediaAsset[]; reportLabel?: string;
+  eventDate?: string; relatedEventSlug?: string;
+  pendingEventPhotos?: number;
 }
 export interface Event {
   id: string; slug: string; title: string; status: ContentStatus;
   phase: "upcoming" | "past"; startsAt: string | null; endsAt: string | null;
   dateLabel: string; timeLabel: string; location: string; type: string;
   description: string; body: Paragraph[]; source?: Source;
+  date?: string; reportLabel?: string; relatedPostSlug?: string;
 }
 export const site = {
   name: "DHV-Ortsgruppe Kassel", origin: "https://dhv-kassel-demo.vercel.app",
   researchDate: "10.10.2026", contactUrl: "https://hanfverband.de/kontakt",
   groupsUrl: "https://hanfverband.de/aktiv-vor-ort", datesUrl: "https://hanfverband.de/termine",
-  localStatus: "Für Kassel wurde bei der Recherche am 10.10.2026 kein Eintrag in der offiziellen DHV-Ortsgruppenliste gefunden. Eine offizielle Ortsgruppe, lokale Ansprechpartner und Termine sind hier daher nicht bestätigt.",
+  localStatus: "Für Kassel wurde bei der Recherche am 10.10.2026 kein Eintrag in der offiziellen DHV-Ortsgruppenliste gefunden. Der offizielle Ortsgruppenstatus und lokale Ansprechpartner sind weiterhin nicht unabhängig bestätigt. Der Rückblick auf den 9. Oktober basiert auf Angaben für diese Website.",
 };
+export const dhvMedia = {
+  logo: {
+    src: "/images/dhv/logo.png", alt: "Original-Logo des Deutschen Hanfverbands",
+    caption: "Deutscher Hanfverband", credit: "Deutscher Hanfverband · hanfverband.de",
+    width: 1650, height: 500, fit: "contain" as const,
+  },
+  bundestag: {
+    src: "/images/dhv/bundestag.jpg", alt: "DHV-Beitragsgrafik mit Georg Wurth vor dem Bundestag",
+    caption: "Original-Beitragsgrafik des DHV zur Anhörung im Bundestag.",
+    credit: "Quelle: Deutscher Hanfverband · Grafik unverändert übernommen",
+    width: 1280, height: 720, fit: "contain" as const,
+  },
+  newsLogo: {
+    src: "/images/dhv/original-news-logo.png", alt: "Original-Beitragsgrafik mit dem Logo des Deutschen Hanfverbands",
+    caption: "Originalgrafik des Deutschen Hanfverbands.", credit: "Quelle: Deutscher Hanfverband",
+    width: 1920, height: 1080, fit: "contain" as const,
+  },
+  videoNews: {
+    src: "/images/dhv/news-525.jpg", alt: "Original-Vorschaubild: Anhörung zu GKV & Cannabis, DHV-News 525",
+    caption: "DHV-News #525 · 9. Oktober 2026", credit: "Original-Vorschaubild: Deutscher Hanfverband",
+    width: 391, height: 220, fit: "contain" as const,
+    url: "https://hanfverband.de/anhoerung-zu-gkv-cannabis-dhv-news-525",
+  },
+};
+export const crewMedia: MediaAsset[] = [
+  {
+    src: "/images/living-soil/logo.webp", alt: "Original-Logo der Living Soil Crew in Grün und Gold",
+    caption: "Living Soil Crew · bereitgestelltes Markenlogo, kein Foto vom Treffen.",
+    credit: "Living Soil Crew · Medienpaket für diese Website", width: 1200, height: 1200, fit: "contain",
+  },
+];
 export const posts: Post[] = [
+  {
+    id: "post-haze-chill", slug: "rueckblick-haze-chill-living-soil-crew",
+    title: "Ein Abend, der verbindet: Treffen im Haze & Chill",
+    date: "2026-10-10", eventDate: "2026-10-09", category: "Ortsgruppe",
+    status: "reported", visual: "event", readingMinutes: 2,
+    relatedEventSlug: "treffen-haze-chill-9-oktober-2026", gallery: crewMedia, pendingEventPhotos: 3,
+    reportLabel: "Angaben für diese Website vom 10. Oktober 2026. Datum, Beteiligung und Eindrücke wurden für den lokalen Rückblick mitgeteilt; dies ist keine offizielle Erklärung des DHV.",
+    teaser: "Ein gut besuchter Abend mit DHV und Living Soil Crew: Cannabis-Tests, drei Platzierungen und viel gute Stimmung im Haze & Chill.",
+    body: [
+      { heading: "Zusammenkommen in Kassel", text: "Am 9. Oktober 2026 fand unsere Veranstaltung im Haze & Chill Café in der Kölnischen Straße 12–14 in Kassel statt. Der Abend war gut besucht, und wir hatten gemeinsam eine schöne Zeit. Mit dabei waren der Deutsche Hanfverband und die Living Soil Crew." },
+      { heading: "Gute Stimmung, gemeinsamer Austausch", text: "Was uns von diesem Abend bleibt, ist vor allem die Freude am Zusammenkommen. Es hat Spaß gemacht, sich vor Ort zu begegnen und diesen Abend gemeinsam zu verbringen. Genau solche Treffen geben lokalem Engagement ein Gesicht." },
+      { heading: "Eigenes Cannabis testen lassen", text: "Die Living Soil Crew hatte ein Testgerät mitgebracht. Für einen kleinen Betrag konnten die Gäste ihr eigenes Cannabis testen lassen. So gehörten neben dem gemeinsamen Austausch auch die Messungen zum Abend. Ein genauer Betrag und einzelne Messergebnisse sind für diesen Rückblick nicht angegeben." },
+      { heading: "Ein Preis und drei Platzierungen", text: "Der höchste gemessene Wert wurde mit einem Preis ausgezeichnet. Außerdem gab es einen zweiten und einen dritten Platz. Die Namen der Platzierten, die Messwerte und der konkrete Preis werden hier nicht ergänzt, solange diese Angaben noch nicht vorliegen." },
+      { heading: "Mit dem DHV und der Living Soil Crew", text: "Wir freuen uns, dass der Deutsche Hanfverband und die Living Soil Crew dabei waren. Danke an alle, die gekommen sind und den Abend mit uns verbracht haben – und an das Haze & Chill für den Ort unseres Treffens." },
+      { heading: "Das Treffen soll wiederkommen", text: "Der Abend ist als Auftakt für ein wiederkehrendes Format gedacht. Wir freuen uns darauf, wieder gemeinsam im Haze & Chill zusammenzukommen. Der nächste Termin und die Teilnahmebedingungen stehen noch nicht fest. Sobald diese Angaben bestätigt sind, ergänzen wir sie auf der Veranstaltungsseite." },
+    ],
+  },
   {
     id: "post-1", slug: "gemeinsam-in-kassel", title: "Veränderung beginnt vor der eigenen Haustür.",
     date: "2026-10-08", category: "Ortsgruppe", status: "demo", visual: "kassel", readingMinutes: 3,
@@ -32,7 +88,7 @@ export const posts: Post[] = [
   },
   {
     id: "post-2", slug: "dhv-im-bundestag", title: "Im Bundestag: der DHV zur GKV-Anhörung",
-    date: "2026-10-09", category: "News", status: "verified", visual: "news", readingMinutes: 1,
+    date: "2026-10-09", category: "News", status: "verified", visual: "news", readingMinutes: 1, image: dhvMedia.bundestag,
     teaser: "Der Bundesverband veröffentlicht einen Videoausschnitt mit Georg Wurth aus der Anhörung vom 7. Oktober.",
     source: { label: "Deutscher Hanfverband, 09.10.2026", url: "https://hanfverband.de/georg-wurth-im-bundestag-anhoerung-zu-aenderungen-des-gkv-bstabg", checkedAt: "2026-10-10" },
     body: [
@@ -52,7 +108,7 @@ export const posts: Post[] = [
   },
   {
     id: "post-4", slug: "dhv-stellungnahme-gkv", title: "Die DHV-Stellungnahme zur GKV-Debatte",
-    date: "2026-10-06", category: "News", status: "verified", visual: "news", readingMinutes: 1,
+    date: "2026-10-06", category: "News", status: "verified", visual: "news", readingMinutes: 1, image: dhvMedia.newsLogo,
     teaser: "Der DHV stellt seine schriftliche Stellungnahme zur Anhörung öffentlich zur Verfügung.",
     source: { label: "Deutscher Hanfverband, 06.10.2026", url: "https://hanfverband.de/dhv-stellungnahme-zu-anhoerung-gkv-cannabis", checkedAt: "2026-10-10" },
     body: [
@@ -72,6 +128,37 @@ export const posts: Post[] = [
   },
 ];
 export const events: Event[] = [
+  {
+    id: "event-haze-chill", slug: "treffen-haze-chill-9-oktober-2026",
+    title: "Treffen im Haze & Chill mit DHV & Living Soil Crew", type: "Lokales Treffen",
+    status: "reported", phase: "past", date: "2026-10-09", startsAt: null, endsAt: null,
+    dateLabel: "9. Oktober 2026", timeLabel: "Uhrzeit nicht dokumentiert",
+    location: "Haze & Chill · Kölnische Straße 12–14, Kassel",
+    relatedPostSlug: "rueckblick-haze-chill-living-soil-crew",
+    reportLabel: "Veranstaltungsdaten und Eindrücke wurden für diese Website mitgeteilt. Die Adresse ist zusätzlich über die Website des Cafés nachvollziehbar. Dies ist kein offizieller DHV-Veranstaltungsbericht.",
+    description: "Gut besuchter Abend mit DHV und Living Soil Crew, Cannabis-Tests gegen einen kleinen Betrag und drei Platzierungen. Für den höchsten Messwert gab es einen Preis.",
+    body: [
+      { heading: "Rückblick auf den 9. Oktober", text: "Am 9. Oktober 2026 kamen wir im Haze & Chill Café in der Kölnischen Straße 12–14 in Kassel zusammen. Das Treffen war gut besucht und hat Spaß gemacht." },
+      { heading: "Gemeinsam vor Ort", text: "Der Deutsche Hanfverband und die Living Soil Crew waren dabei. Wir bedanken uns bei allen, die den Abend mit uns verbracht haben. Den ausführlichen Rückblick findest du im Blog." },
+      { heading: "Cannabis-Tests und Platzierungen", text: "Die Living Soil Crew brachte ein Testgerät mit. Gegen einen kleinen Betrag konnte eigenes Cannabis getestet werden. Der höchste Messwert erhielt einen Preis; außerdem gab es einen zweiten und dritten Platz. Konkrete Beträge, Messwerte, Namen oder Preise sind nicht angegeben." },
+      { heading: "Ein wiederkehrendes Format", text: "Das Treffen soll künftig wiederkehren. Ein Folgetermin ist noch nicht festgelegt. Die nächsten bestätigten Angaben werden unter den kommenden Veranstaltungen ergänzt." },
+    ],
+  },
+  {
+    id: "event-haze-series", slug: "haze-chill-wiederkehrendes-treffen",
+    title: "Haze & Chill: Austausch & Cannabis-Tests", type: "Wiederkehrendes Format",
+    status: "planned", phase: "upcoming", startsAt: null, endsAt: null,
+    dateLabel: "Folgetermin noch offen", timeLabel: "Uhrzeit noch offen",
+    location: "Haze & Chill · Kölnische Straße 12–14, Kassel",
+    relatedPostSlug: "rueckblick-haze-chill-living-soil-crew",
+    reportLabel: "Die Wiederholung wurde für diese Website angekündigt. Datum, Turnus, Beteiligte, Testangebot und Teilnahmebedingungen eines Folgetermins müssen noch bestätigt werden.",
+    description: "Das Treffen im Haze & Chill soll wiederkehren. Nach dem Auftakt am 9. Oktober warten wir noch auf den nächsten bestätigten Termin.",
+    body: [
+      { heading: "Nach dem Auftakt geht es weiter", text: "Der gut besuchte Abend am 9. Oktober 2026 soll der Anfang eines wiederkehrenden Formats sein. Der geplante Rahmen ist ein Treffen im Haze & Chill mit Austausch und Cannabis-Tests." },
+      { heading: "Was für den nächsten Abend noch offen ist", text: "Es gibt noch keinen festgelegten Folgetermin oder regelmäßigen Turnus. Uhrzeit, das konkrete Testangebot, ein etwaiger Betrag, die beteiligten Personen und Teilnahmebedingungen werden für jeden Termin gesondert bestätigt." },
+      { heading: "So war der erste Abend", text: "Beim Auftakt waren der Deutsche Hanfverband und die Living Soil Crew dabei. Eigenes Cannabis konnte gegen einen kleinen Betrag getestet werden. Es gab einen Preis für den höchsten Messwert sowie einen zweiten und dritten Platz. Den Bericht findest du im Blog." },
+    ],
+  },
   {
     id: "event-1", slug: "offener-austausch", title: "Offener Austausch in Kassel", type: "Kennenlernen",
     status: "demo", phase: "upcoming", startsAt: null, endsAt: null,

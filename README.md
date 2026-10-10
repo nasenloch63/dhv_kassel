@@ -21,11 +21,16 @@ pnpm dev
 
 `src/data/content.ts` enthaelt typisierte `Post`, `Event` und `Source` Modelle und alle Inhalte. Blogbeitraege unter `posts`, Veranstaltungen unter `events` ergaenzen. Eindeutige IDs und Slugs vergeben. Die Funktionen `getPosts` und `getEvents` dienen als spaetere CMS-Anbindungspunkte.
 
-- `status: "demo"` kennzeichnet Beispiele, `verified` braucht eine nachvollziehbare Quelle.
+- `status: "demo"` kennzeichnet Beispiele; `verified` braucht eine nachvollziehbare offizielle Quelle. `reported` kennzeichnet vom Auftraggeber mitgeteilte lokale Rueckblicke mit `reportLabel`; `planned` beschreibt noch nicht terminierte reale Planungen, keine Beispielveranstaltungen.
 - Blogdatum: ISO-Datum `YYYY-MM-DD`; fuer Demo-Beitraege als Beispieldatum ausgewiesen.
 - Veranstaltung: `startsAt` / `endsAt` als ISO-Zeitstempel mit Zeitzonenoffset; bis zur Bestaetigung `null`. `dateLabel`, `timeLabel` und `location` muessen zu den bestaetigten Daten passen.
 - `phase` trennt kommende und vergangene Eintraege. Bei echten Veranstaltungen redaktionell aktualisieren oder vor der CMS-Anbindung zeitbasiert ableiten.
 - `body` besteht aus strukturierten Abschnitten mit optionaler Ueberschrift und Text. Kein HTML aus einem CMS ungeprueft einsetzen.
+- Ist nur das Veranstaltungsdatum bekannt, `date: "YYYY-MM-DD"` setzen und `startsAt` auf `null` lassen. Keine Uhrzeit erfinden.
+- Originalbilder stehen unter `public/images/dhv/`, das bereitgestellte Crew-Logo unter `public/images/living-soil/`. `image` und `gallery` verwenden `MediaAsset` mit Alttext, Bildunterschrift, Quelle und Abmessungen.
+- Der Rueckblick `rueckblick-haze-chill-living-soil-crew` und die Veranstaltung vom 09.10.2026 basieren auf Angaben des Auftraggebers. Die Adresse wurde auf der Cafe-Website geprueft. Messergebnisse, genaue Betraege und Namen wurden nicht ergaenzt.
+- Fuer echte Veranstaltungsfotos freigegebene Dateien unter `public/images/` ablegen und im `gallery`-Array des Rueckblicks ergaenzen. `pendingEventPhotos: 3` zeigt derzeit drei Fotoplatzhalter; nach dem Einpflegen auf `0` setzen. Bestehende Crew-Logos nicht als Veranstaltungsfoto beschriften.
+- Das wiederkehrende Format `haze-chill-wiederkehrendes-treffen` hat bewusst kein Datum und keine Anmeldung. Folgetermin, Turnus, Testangebot und Teilnahmebedingungen vor der Ankuendigung bestaetigen.
 
 ## Pruefen und exportieren
 
