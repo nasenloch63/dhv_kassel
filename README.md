@@ -29,7 +29,7 @@ pnpm dev
 - Ist nur das Veranstaltungsdatum bekannt, `date: "YYYY-MM-DD"` setzen und `startsAt` auf `null` lassen. Keine Uhrzeit erfinden.
 - Originalbilder stehen unter `public/images/dhv/`, das bereitgestellte Crew-Logo unter `public/images/living-soil/`. `image` und `gallery` verwenden `MediaAsset` mit Alttext, Bildunterschrift, Quelle und Abmessungen.
 - Der Rueckblick `rueckblick-haze-chill-living-soil-crew` und die Veranstaltung vom 09.10.2026 basieren auf Angaben des Auftraggebers. Die Adresse wurde auf der Cafe-Website geprueft. Messergebnisse, genaue Betraege und Namen wurden nicht ergaenzt.
-- Fuer echte Veranstaltungsfotos freigegebene Dateien unter `public/images/` ablegen und im `gallery`-Array des Rueckblicks ergaenzen. `pendingEventPhotos: 3` zeigt derzeit drei Fotoplatzhalter; nach dem Einpflegen auf `0` setzen. Bestehende Crew-Logos nicht als Veranstaltungsfoto beschriften.
+- Der Rueckblick verwendet ausgewaehlte Veranstaltungsfotos unter `public/images/events/haze-chill-2026-10-09/` und kurze MP4-Videos unter `public/videos/events/`. Originalmedien bleiben im bereitgestellten Ordner erhalten. `galleryTitle`, `socialLinks` und `videos` ergaenzen die redaktionellen Inhalte.
 - Das wiederkehrende Format `haze-chill-wiederkehrendes-treffen` hat bewusst kein Datum und keine Anmeldung. Folgetermin, Turnus, Testangebot und Teilnahmebedingungen vor der Ankuendigung bestaetigen.
 
 ## Pruefen und exportieren

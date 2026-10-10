@@ -10,7 +10,7 @@ export function MediaGallery({ items, title = "Living Soil Crew" }: { items: Med
   if (!items.length) return null;
   return <section className="report-media"><h2>{title}</h2><div className={`media-gallery ${items.length === 1 ? "single" : ""}`}>
     {items.map(item => <figure key={item.src}><a href={item.src} target="_blank" rel="noopener noreferrer" aria-label={`${item.alt} in voller Größe öffnen`}>
-      <div className="gallery-image"><Image src={item.src} alt={item.alt} fill sizes="(max-width: 600px) 100vw, 700px" style={{ objectFit: item.fit ?? "cover" }} /></div>
+      <div className={`gallery-image ${item.src.startsWith("/images/events/") ? "event-gallery-image" : ""}`} style={item.src.startsWith("/images/events/") ? { aspectRatio: `${item.width} / ${item.height}` } : undefined}><Image src={item.src} alt={item.alt} fill sizes="(max-width: 600px) 100vw, 700px" style={{ objectFit: item.fit ?? "cover" }} /></div>
     </a><figcaption>{item.caption}<span>{item.credit}</span></figcaption></figure>)}
   </div></section>;
 }
