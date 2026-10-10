@@ -62,15 +62,6 @@ export const crewMedia: MediaAsset[] = [
 ];
 export const hazeChillPhotos: MediaAsset[] = [
   {
-    "src": "/images/events/haze-chill-2026-10-09/lounge.webp",
-    "alt": "Gäste an den Tischen in der Haze & Chill Lounge mit farbiger Wandkunst",
-    "caption": "Ein voller Abend im Haze & Chill.",
-    "credit": "Veranstaltungsfotos · bereitgestellt für diesen Rückblick",
-    "width": 1800,
-    "height": 1350,
-    "fit": "contain"
-  },
-  {
     "src": "/images/events/haze-chill-2026-10-09/gespraeche.webp",
     "alt": "Gäste im Gespräch an einem Tisch unter violettem Licht",
     "caption": "Zusammenkommen, austauschen und gemeinsam Spaß haben.",
@@ -123,8 +114,8 @@ export const posts: Post[] = [
     date: "2026-10-10", eventDate: "2026-10-09", category: "Ortsgruppe",
     status: "reported", visual: "event", readingMinutes: 3,
     relatedEventSlug: "treffen-haze-chill-9-oktober-2026",
-    image: { ...hazeChillPhotos[0], fit: "cover" },
-    gallery: hazeChillPhotos.slice(1), galleryTitle: "Eindrücke vom Abend",
+    image: { ...hazeChillPhotos[2], fit: "cover" },
+    gallery: hazeChillPhotos.filter((_, index) => index !== 2), galleryTitle: "Eindrücke vom Abend",
     videos: [{"src": "/videos/events/haze-chill-community.mp4", "poster": "/images/events/haze-chill-2026-10-09/video-community.webp", "caption": "Gesprächsrunde in der Lounge · ohne Ton"}, {"src": "/videos/events/haze-chill-living-soil.mp4", "poster": "/images/events/haze-chill-2026-10-09/video-living-soil.webp", "caption": "Einblicke am Tisch der Living Soil Crew · ohne Ton"}],
     socialLinks: [
       { label: "@deutscher.hanfverband", url: "https://www.instagram.com/deutscher.hanfverband/" },
