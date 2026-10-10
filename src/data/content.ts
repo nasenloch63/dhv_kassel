@@ -119,7 +119,7 @@ export const hazeChillPhotos: MediaAsset[] = [
 export const posts: Post[] = [
   {
     id: "post-haze-chill", slug: "rueckblick-haze-chill-living-soil-crew",
-    title: "Haze & Chill: ein Abend voller Community, guter Stimmung und Preise",
+    title: "Haze & Chill: Community, gute Stimmung und Preise",
     date: "2026-10-10", eventDate: "2026-10-09", category: "Ortsgruppe",
     status: "reported", visual: "event", readingMinutes: 3,
     relatedEventSlug: "treffen-haze-chill-9-oktober-2026",
