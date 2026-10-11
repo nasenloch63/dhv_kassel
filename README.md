@@ -54,3 +54,7 @@ Next.js App Router, React, Tailwind CSS 4 und Lucide. Der Build erzeugt `out/` f
 - Quellen erneut pruefen, Bildnachweis erhalten und Barrierefreiheit redaktionell mitpruefen.
 
 Die Demo ist absichtlich `noindex` und blockiert Suchmaschinen ueber `robots.txt`.
+
+## Schriftarten
+
+Dosis fuer Ueberschriften, Navigation und Buttons; DejaVu Condensed fuer Fliesstext, wie am 11.10.2026 auf hanfverband.de geprueft. Die Original-Schriftdateien liegen unter `public/fonts/`, die Zuordnung in `src/app/fonts.css` und `globals.css`. Keine externen Schriftanfragen. Lizenztexte fuer Dosis (SIL OFL) und DejaVu liegen bei den Schriftdateien und sind auf der Quellenseite verlinkt.
