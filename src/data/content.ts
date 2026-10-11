@@ -12,7 +12,9 @@ export interface Post {
   readingMinutes: number; body: Paragraph[]; source?: Source;
   image?: MediaAsset; gallery?: MediaAsset[]; reportLabel?: string;
   eventDate?: string; relatedEventSlug?: string;
-  pendingEventPhotos?: number;
+  pendingEventPhotos?: number; galleryTitle?: string;
+  socialLinks?: { label: string; url: string }[];
+  videos?: { src: string; poster: string; caption: string }[];
 }
 export interface Event {
   id: string; slug: string; title: string; status: ContentStatus;
@@ -60,23 +62,95 @@ export const crewMedia: MediaAsset[] = [
     credit: "Living Soil Crew · Medienpaket für diese Website", width: 1200, height: 1200, fit: "contain",
   },
 ];
+export const hazeChillPhotos: MediaAsset[] = [
+  {
+    "src": "/images/events/haze-chill-2026-10-09/gespraeche.webp",
+    "alt": "Gäste im Gespräch an einem Tisch unter violettem Licht",
+    "caption": "Zusammenkommen, austauschen und gemeinsam Spaß haben.",
+    "credit": "Veranstaltungsfotos · bereitgestellt für diesen Rückblick",
+    "width": 1012,
+    "height": 1800,
+    "fit": "contain"
+  },
+  {
+    "src": "/images/events/haze-chill-2026-10-09/wandkunst.webp",
+    "alt": "Lounge-Sitzecke mit großflächiger Wandkunst und Gästen",
+    "caption": "Die Wandkunst und das Licht machen die Location unverwechselbar.",
+    "credit": "Veranstaltungsfotos · bereitgestellt für diesen Rückblick",
+    "width": 1350,
+    "height": 1800,
+    "fit": "contain"
+  },
+  {
+    "src": "/images/events/haze-chill-2026-10-09/crew.webp",
+    "alt": "Gäste am Tisch der Living Soil Crew im Haze & Chill",
+    "caption": "Im Austausch mit der Living Soil Crew.",
+    "credit": "Veranstaltungsfotos · bereitgestellt für diesen Rückblick",
+    "width": 1350,
+    "height": 1800,
+    "fit": "contain"
+  },
+  {
+    "src": "/images/events/haze-chill-2026-10-09/testtisch.webp",
+    "alt": "Testgerät und Zubehör auf dem Tisch der Living Soil Crew",
+    "caption": "Ein Blick auf das Testangebot der Living Soil Crew.",
+    "credit": "Veranstaltungsfotos · bereitgestellt für diesen Rückblick",
+    "width": 1350,
+    "height": 1800,
+    "fit": "contain"
+  },
+  {
+    "src": "/images/events/haze-chill-2026-10-09/community.webp",
+    "alt": "Gesprächsrunde am Tisch der Living Soil Crew",
+    "caption": "Ein Abend, der die Community zusammenbringt.",
+    "credit": "Veranstaltungsfotos · bereitgestellt für diesen Rückblick",
+    "width": 1350,
+    "height": 1800,
+    "fit": "contain"
+  }
+];
 export const posts: Post[] = [
   {
     id: "post-haze-chill", slug: "rueckblick-haze-chill-living-soil-crew",
-    title: "Ein Abend, der verbindet: Treffen im Haze & Chill",
+    title: "Haze & Chill: Community, gute Stimmung und Preise",
     date: "2026-10-10", eventDate: "2026-10-09", category: "Ortsgruppe",
-    status: "reported", visual: "event", readingMinutes: 2,
-    relatedEventSlug: "treffen-haze-chill-9-oktober-2026", gallery: crewMedia, pendingEventPhotos: 3,
-    reportLabel: "Angaben für diese Website vom 10. Oktober 2026. Datum, Beteiligung und Eindrücke wurden für den lokalen Rückblick mitgeteilt; dies ist keine offizielle Erklärung des DHV.",
-    teaser: "Ein gut besuchter Abend mit DHV und Living Soil Crew: Cannabis-Tests, drei Platzierungen und viel gute Stimmung im Haze & Chill.",
-    body: [
-      { heading: "Zusammenkommen in Kassel", text: "Am 9. Oktober 2026 fand unsere Veranstaltung im Haze & Chill Café in der Kölnischen Straße 12–14 in Kassel statt. Der Abend war gut besucht, und wir hatten gemeinsam eine schöne Zeit. Mit dabei waren der Deutsche Hanfverband und die Living Soil Crew." },
-      { heading: "Gute Stimmung, gemeinsamer Austausch", text: "Was uns von diesem Abend bleibt, ist vor allem die Freude am Zusammenkommen. Es hat Spaß gemacht, sich vor Ort zu begegnen und diesen Abend gemeinsam zu verbringen. Genau solche Treffen geben lokalem Engagement ein Gesicht." },
-      { heading: "Eigenes Cannabis testen lassen", text: "Die Living Soil Crew hatte ein Testgerät mitgebracht. Für einen kleinen Betrag konnten die Gäste ihr eigenes Cannabis testen lassen. So gehörten neben dem gemeinsamen Austausch auch die Messungen zum Abend. Ein genauer Betrag und einzelne Messergebnisse sind für diesen Rückblick nicht angegeben." },
-      { heading: "Ein Preis und drei Platzierungen", text: "Der höchste gemessene Wert wurde mit einem Preis ausgezeichnet. Außerdem gab es einen zweiten und einen dritten Platz. Die Namen der Platzierten, die Messwerte und der konkrete Preis werden hier nicht ergänzt, solange diese Angaben noch nicht vorliegen." },
-      { heading: "Mit dem DHV und der Living Soil Crew", text: "Wir freuen uns, dass der Deutsche Hanfverband und die Living Soil Crew dabei waren. Danke an alle, die gekommen sind und den Abend mit uns verbracht haben – und an das Haze & Chill für den Ort unseres Treffens." },
-      { heading: "Das Treffen soll wiederkommen", text: "Der Abend ist als Auftakt für ein wiederkehrendes Format gedacht. Wir freuen uns darauf, wieder gemeinsam im Haze & Chill zusammenzukommen. Der nächste Termin und die Teilnahmebedingungen stehen noch nicht fest. Sobald diese Angaben bestätigt sind, ergänzen wir sie auf der Veranstaltungsseite." },
+    status: "reported", visual: "event", readingMinutes: 3,
+    relatedEventSlug: "treffen-haze-chill-9-oktober-2026",
+    image: { ...hazeChillPhotos[2], fit: "cover" },
+    gallery: hazeChillPhotos.filter((_, index) => index !== 2), galleryTitle: "Eindrücke vom Abend",
+    videos: [{"src": "/videos/events/haze-chill-community.mp4", "poster": "/images/events/haze-chill-2026-10-09/video-community.webp", "caption": "Gesprächsrunde in der Lounge · ohne Ton"}, {"src": "/videos/events/haze-chill-living-soil.mp4", "poster": "/images/events/haze-chill-2026-10-09/video-living-soil.webp", "caption": "Einblicke am Tisch der Living Soil Crew · ohne Ton"}],
+    socialLinks: [
+      { label: "@deutscher.hanfverband", url: "https://www.instagram.com/deutscher.hanfverband/" },
+      { label: "@haze_and_chill_cafe", url: "https://www.instagram.com/haze_and_chill_cafe/" },
     ],
+    reportLabel: "Lokaler Rückblick vom 9. Oktober 2026 · Text und Veranstaltungsmedien basieren auf den bereitgestellten Eindrücken.",
+    teaser: "Volle Lounge, gute Gespräche und jede Menge Spaß: unser Abend mit dem Deutschen Hanfverband und der Living Soil Crew im Haze & Chill Café in Kassel – mit Cannabis-Tests und Preisvergabe.",
+    body: [
+      {
+            "heading": "Kassel kommt zusammen",
+            "text": "Am 9. Oktober 2026 wurde das Haze & Chill Café zum Treffpunkt für unsere Community: Gemeinsam mit dem Deutschen Hanfverband und der Living Soil Crew haben wir einen richtig schönen Abend in Kassel verbracht. Die Location war gut besucht, die Stimmung entspannt – und alle hatten mega viel Spaß."
+      },
+      {
+            "heading": "Eine Location mit Charakter",
+            "text": "Mitten in Kassel, in der Kölnischen Straße 12–14, bietet das Haze & Chill den passenden Rahmen für einen solchen Abend. Große Wandbilder, violettes und grünes Licht und gemütliche Lounge-Ecken prägen den Raum. Unsere Bilder zeigen, wie sich die Gäste an den Tischen zusammengefunden haben: zum Quatschen, Kennenlernen und gemeinsamen Chillen."
+      },
+      {
+            "heading": "Living Soil Crew: das Testangebot als Highlight",
+            "text": "Die Living Soil Crew hatte ein Testgerät dabei. Für einen kleinen Betrag konnten die Gäste ihr eigenes Cannabis testen lassen. Das Angebot war ein Highlight des Abends und gab dem Treffen neben den Gesprächen einen weiteren gemeinsamen Programmpunkt."
+      },
+      {
+            "heading": "Preise, Platzierungen und Freude",
+            "text": "Auch Preise wurden verteilt! Der höchste gemessene Wert wurde ausgezeichnet; außerdem gab es einen zweiten und einen dritten Platz. Glückwunsch an die Platzierten! Die Preisvergabe gehörte zu den Highlights eines Abends, an dem vor allem die Freude am gemeinsamen Erlebnis im Mittelpunkt stand."
+      },
+      {
+            "heading": "Danke für diesen Abend",
+            "text": "Ein großes Dankeschön an alle, die dabei waren und die gute Stimmung mitgebracht haben. Danke an den Deutschen Hanfverband, die Living Soil Crew und das Team vom Haze & Chill für diesen gelungenen Abend. Die vielen Begegnungen, der Austausch und der gemeinsame Spaß machen Lust auf mehr."
+      },
+      {
+            "heading": "Wir freuen uns auf die nächste Runde",
+            "text": "Das Treffen ist als Auftakt für ein wiederkehrendes Format gedacht. Wir freuen uns schon darauf, wieder im Haze & Chill zusammenzukommen. Sobald der nächste Termin feststeht, findet ihr ihn auf unserer Veranstaltungsseite. Bis dahin: Schaut euch die Eindrücke vom Abend an und folgt dem Deutschen Hanfverband und dem Haze & Chill auf Instagram."
+      }
+],
   },
   {
     id: "post-1", slug: "gemeinsam-in-kassel", title: "Veränderung beginnt vor der eigenen Haustür.",
