@@ -502,6 +502,15 @@ h3 { font-size: 21px; }
 @media (max-width: 360px) { .brand-logo { width: 166px; } .event-cover strong { font-size: 26px; } .article-visual .event-cover strong { font-size: 28px; } }
 .facebook-button { background: #1466ce; color: #fff; gap: 11px; border-color: #1466ce; }
 .facebook-button:hover { background: #0c4c9c; border-color: #0c4c9c; }
+.instagram-button { background: #8c2858; color: #fff; border-color: #8c2858; gap: 11px; }
+.instagram-button:hover { background: #6b1d43; border-color: #6b1d43; }
+.prose .instagram-button { color: #fff !important; text-decoration: none !important; }
+.mobile-nav > .instagram-button { color: #fff; justify-content: center; padding: 14px; margin-top: 10px; border-bottom: 0; }
+.hero-social-buttons { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 12px; }
+@media (max-width: 600px) {
+  .hero-social-buttons { gap: 9px; margin-top: 9px; }
+  .hero-social-buttons .button { width: 100%; font-size: 12px; }
+}
 .prose .facebook-button { color: white !important; text-decoration: none !important; }
 .facebook-button.header-cta { font-size: 12px; min-height: 41px; padding: 11px 16px; }
 .mobile-nav > .facebook-button { color: #fff; justify-content: center; padding: 14px; margin-top: 15px; border-bottom: 0; }

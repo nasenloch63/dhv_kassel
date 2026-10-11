@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, CalendarDays, Clock3, MapPin } from "lucide-react";
 import { FacebookButton } from "@/components/facebook-button";
+import { InstagramButton } from "@/components/instagram-button";
 import { EventFlyer } from "@/components/event-flyer";
 import { events, site } from "@/data/content";
 import { StatusBadge, DemoNote, ButtonLink } from "@/components/ui";
@@ -26,7 +27,7 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
         {isDemo ? <DemoNote>{event.phase === "past" ? "Beispiel-Rückblick: Diese Veranstaltung hat nicht nachweislich stattgefunden." : "Demo-Inhalt: Dies ist keine angekündigte Veranstaltung. Datum, Uhrzeit und Treffpunkt sind nicht bestätigt."}</DemoNote> : <DemoNote>{event.reportLabel}</DemoNote>}
         {event.body.map((paragraph, index) => <section key={index}><h2>{paragraph.heading}</h2><p>{paragraph.text}</p></section>)}
         {event.relatedPostSlug && <div className="report-action"><ButtonLink href={`/news/${event.relatedPostSlug}/`}>Den Rückblick lesen</ButtonLink></div>}
-        {event.announcementUrl && <div className="report-action"><FacebookButton>Facebook-Seite besuchen</FacebookButton></div>}
+        {event.announcementUrl && <div className="report-action"><FacebookButton>Facebook-Seite besuchen</FacebookButton><InstagramButton /></div>}
       </div>
     </div><aside className="event-facts"><p className="eyebrow">AUF EINEN BLICK</p>
       <div><CalendarDays /><p><strong>{event.dateLabel}</strong><span>{isDemo ? (event.phase === "past" ? "Demo-Archiv" : "Kein bestätigtes Datum") : event.phase === "past" ? "Vergangene Veranstaltung" : event.status === "announced" ? "Ankündigung laut Flyer" : "Wiederholung in Planung"}</span></p></div>

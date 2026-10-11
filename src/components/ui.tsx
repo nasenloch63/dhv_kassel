@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { FacebookButton } from "./facebook-button";
+import { InstagramButton } from "./instagram-button";
 import Image from "next/image";
 import { ArrowRight, ArrowUpRight, CalendarDays, Clock3, MapPin, MessageCircle } from "lucide-react";
 import { type Post, type Event, type ContentStatus, formatDate, site } from "@/data/content";
@@ -28,7 +29,7 @@ export function EventRow({ event }: { event: Event }) {
   return <article className="event-row"><div className="event-date" aria-hidden="true"><span>{date ? date.toLocaleDateString("de-DE", { month: "short", timeZone: "Europe/Berlin" }) : event.status === "planned" ? "OFFEN" : "DEMO"}</span>{date ? date.toLocaleDateString("de-DE", { day: "2-digit", timeZone: "Europe/Berlin" }) : <CalendarDays size={28} strokeWidth={1.4} />}</div><div className="event-content"><div className="event-top"><span className="event-type">{event.type}</span><StatusBadge status={event.status} /></div><h3><Link href={`/veranstaltungen/${event.slug}/`}>{event.title}</Link></h3><p className="event-description">{event.description}</p><div className="event-meta"><span><CalendarDays size={14} />{event.dateLabel}</span><span><Clock3 size={14} />{event.timeLabel}</span><span><MapPin size={14} />{event.location}</span></div></div><Link href={`/veranstaltungen/${event.slug}/`} className="event-arrow" aria-label={`Details: ${event.title}`} title="Veranstaltung ansehen"><ArrowUpRight size={23} /></Link></article>;
 }
 export function ContactBand() {
-  return <section className="contact-band" id="kontakt"><div className="container contact-inner"><div><p className="eyebrow">GUTE IDEEN BEGINNEN MIT EINEM GESPRÄCH</p><h2>Bring deine Perspektive ein.</h2><p>Interesse an Engagement vor Ort? Der offizielle DHV ist die erste Anlaufstelle für Fragen zu Ortsgruppen und ihrer Gründung.</p></div><div className="contact-actions"><FacebookButton>Mit uns auf Facebook</FacebookButton><ButtonLink href={site.contactUrl} variant="light" external><MessageCircle size={18} /> DHV kontaktieren</ButtonLink><span>Bundesweiter Kontakt · kein Kasseler Ansprechpartner bestätigt</span></div></div></section>;
+  return <section className="contact-band" id="kontakt"><div className="container contact-inner"><div><p className="eyebrow">GUTE IDEEN BEGINNEN MIT EINEM GESPRÄCH</p><h2>Bring deine Perspektive ein.</h2><p>Interesse an Engagement vor Ort? Der offizielle DHV ist die erste Anlaufstelle für Fragen zu Ortsgruppen und ihrer Gründung.</p></div><div className="contact-actions"><FacebookButton>Mit uns auf Facebook</FacebookButton><InstagramButton /><ButtonLink href={site.contactUrl} variant="light" external><MessageCircle size={18} /> DHV kontaktieren</ButtonLink><span>Bundesweiter Kontakt · kein Kasseler Ansprechpartner bestätigt</span></div></div></section>;
 }
 export function DemoNote({ children }: { children?: React.ReactNode }) {
   return <aside className="demo-note"><span className="note-marker">i</span><p>{children ?? site.localStatus}</p></aside>;

@@ -29,6 +29,7 @@ export const site = {
   researchDate: "10.10.2026", contactUrl: "https://hanfverband.de/kontakt",
   groupsUrl: "https://hanfverband.de/aktiv-vor-ort", datesUrl: "https://hanfverband.de/termine",
   facebookUrl: "https://www.facebook.com/profile.php?id=61593238476360",
+  instagramUrl: "https://www.instagram.com/dhv_kassel/",
   localStatus: "Für Kassel wurde bei der Recherche am 10.10.2026 kein Eintrag in der offiziellen DHV-Ortsgruppenliste gefunden. Der offizielle Ortsgruppenstatus und lokale Ansprechpartner sind weiterhin nicht unabhängig bestätigt. Der Rückblick auf den 9. Oktober basiert auf Angaben für diese Website.",
 };
 export const dhvMedia = {

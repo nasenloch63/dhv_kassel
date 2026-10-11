@@ -4,6 +4,7 @@ import { ArrowRight, ArrowUpRight, MapPin, MessagesSquare, Megaphone, UsersRound
 import { ButtonLink, SectionHeading, PostCard, EventRow, ContactBand, DemoNote } from "@/components/ui";
 import { DhvMediaBand } from "@/components/media";
 import { FacebookButton } from "@/components/facebook-button";
+import { InstagramButton } from "@/components/instagram-button";
 import { EventFlyer } from "@/components/event-flyer";
 import { posts, events } from "@/data/content";
 
@@ -20,7 +21,8 @@ export default function Home() {
         <h1>DHV-Ortsgruppe<br /><span>Kassel</span></h1>
         <p className="hero-description">Für Aufklärung. Für Dialog.<br />Für eine zeitgemäße Cannabispolitik.</p>
         <p className="hero-context">Lokaler Austausch und Perspektiven aus unserer Stadt.</p>
-        <div className="hero-buttons"><ButtonLink href="/ueber-uns/#mitmachen" variant="light">Mitmachen</ButtonLink><ButtonLink href="/veranstaltungen/" variant="secondary">Veranstaltungen</ButtonLink><FacebookButton /></div>
+        <div className="hero-buttons"><ButtonLink href="/ueber-uns/#mitmachen" variant="light">Mitmachen</ButtonLink><ButtonLink href="/veranstaltungen/" variant="secondary">Veranstaltungen</ButtonLink></div>
+        <div className="hero-social-buttons"><FacebookButton /><InstagramButton /></div>
       </div><div className="hero-caption"><MapPin size={14} aria-hidden="true" /> Kassel · Blick vom Herkules</div></div>
       <a href="/quellen/#bildnachweis" className="hero-credit">Foto: Dguendel · CC BY 4.0</a>
     </section>
@@ -29,7 +31,7 @@ export default function Home() {
       <span><Megaphone size={21} strokeWidth={1.5} /> Lokal etwas bewegen</span>
       <span><UsersRound size={21} strokeWidth={1.5} /> Gemeinsam aktiv werden</span>
     </div></div>
-    {nextEvent?.flyer && <section className="next-event-band"><div className="container next-event-inner"><EventFlyer flyer={nextEvent.flyer} /><div><p className="eyebrow">NÄCHSTES OFFENES TREFFEN</p><h2>Kassel braucht dich.</h2><p className="next-event-title">Offenes Treffen zur Neugründung der DHV-Ortsgruppe Kassel</p><p className="next-event-date"><strong>{nextEvent.dateLabel} · {nextEvent.timeLabel}</strong><span>{nextEvent.location}</span></p><p>Kein Vorwissen nötig. Aufklären, vernetzen und gemeinsam etwas bewegen.</p><div className="next-event-actions"><ButtonLink href={`/veranstaltungen/${nextEvent.slug}/`}>Zum Treffen</ButtonLink><FacebookButton /></div><span className="media-credit">Ankündigung laut bereitgestelltem Flyer</span></div></div></section>}
+    {nextEvent?.flyer && <section className="next-event-band"><div className="container next-event-inner"><EventFlyer flyer={nextEvent.flyer} /><div><p className="eyebrow">NÄCHSTES OFFENES TREFFEN</p><h2>Kassel braucht dich.</h2><p className="next-event-title">Offenes Treffen zur Neugründung der DHV-Ortsgruppe Kassel</p><p className="next-event-date"><strong>{nextEvent.dateLabel} · {nextEvent.timeLabel}</strong><span>{nextEvent.location}</span></p><p>Kein Vorwissen nötig. Aufklären, vernetzen und gemeinsam etwas bewegen.</p><div className="next-event-actions"><ButtonLink href={`/veranstaltungen/${nextEvent.slug}/`}>Zum Treffen</ButtonLink><FacebookButton /><InstagramButton /></div><span className="media-credit">Ankündigung laut bereitgestelltem Flyer</span></div></div></section>}
     <section className="section container"><SectionHeading eyebrow="NEUIGKEITEN & PERSPEKTIVEN" title="Was uns bewegt." href="/news/" linkText="Alle Beiträge" /><div className="post-grid">{featured.map(post => <PostCard key={post.id} post={post} />)}</div></section>
     <DhvMediaBand />
     <section className="events-section"><div className="container section">
