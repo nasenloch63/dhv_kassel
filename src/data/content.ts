@@ -1,4 +1,4 @@
-export type ContentStatus = "verified" | "reported" | "planned" | "demo";
+export type ContentStatus = "verified" | "announced" | "reported" | "planned" | "demo";
 export type Category = "Ortsgruppe" | "Aktionen" | "News";
 export interface Source { label: string; url: string; checkedAt: string }
 export interface Paragraph { heading?: string; text: string }
@@ -20,11 +20,13 @@ export interface Event {
   dateLabel: string; timeLabel: string; location: string; type: string;
   description: string; body: Paragraph[]; source?: Source;
   date?: string; reportLabel?: string; relatedPostSlug?: string;
+  flyer?: MediaAsset; announcementUrl?: string;
 }
 export const site = {
   name: "DHV-Ortsgruppe Kassel", origin: "https://dhv-kassel-demo.vercel.app",
   researchDate: "10.10.2026", contactUrl: "https://hanfverband.de/kontakt",
   groupsUrl: "https://hanfverband.de/aktiv-vor-ort", datesUrl: "https://hanfverband.de/termine",
+  facebookUrl: "https://www.facebook.com/profile.php?id=61593238476360",
   localStatus: "Für Kassel wurde bei der Recherche am 10.10.2026 kein Eintrag in der offiziellen DHV-Ortsgruppenliste gefunden. Der offizielle Ortsgruppenstatus und lokale Ansprechpartner sind weiterhin nicht unabhängig bestätigt. Der Rückblick auf den 9. Oktober basiert auf Angaben für diese Website.",
 };
 export const dhvMedia = {
@@ -128,6 +130,30 @@ export const posts: Post[] = [
   },
 ];
 export const events: Event[] = [
+  {
+    id: "event-gruendung-2026", slug: "offenes-gruendungstreffen-15-oktober-2026",
+    title: "Kassel braucht dich: offenes Gründungstreffen",
+    type: "Offenes Gründungstreffen", status: "announced", phase: "upcoming",
+    date: "2026-10-15", startsAt: "2026-10-15T19:00:00+02:00", endsAt: null,
+    dateLabel: "Donnerstag, 15. Oktober 2026", timeLabel: "Ab 19:00 Uhr",
+    location: "Haze & Chill Café · Kölnische Straße 12–14, 34117 Kassel",
+    announcementUrl: site.facebookUrl,
+    reportLabel: "Ankündigung laut bereitgestelltem Veranstaltungsflyer, übernommen am 11. Oktober 2026. Datum, Beginn und Ort sind dem Flyer entnommen. Das verlinkte Facebook-Profil wurde für diese Website mitgeteilt; die Ankündigung konnte dort nicht unabhängig geprüft werden.",
+    description: "Offenes Treffen zur Neugründung der DHV-Ortsgruppe Kassel. Gemeinsam für Aufklärung, Vernetzung und eine vernünftige Drogenpolitik in Kassel und Umgebung. Kein Vorwissen nötig.",
+    flyer: {
+      src: "/images/events/gruendungstreffen-15-oktober-2026.webp",
+      alt: "Flyer: Kassel braucht dich. Offenes Treffen zur Neugründung der DHV-Ortsgruppe Kassel am Donnerstag, 15. Oktober 2026 ab 19 Uhr im Haze & Chill Café, Kölnische Straße 12–14, 34117 Kassel. Kein Vorwissen nötig.",
+      caption: "Bereitgestellter Veranstaltungsflyer · 15. Oktober 2026",
+      credit: "Vom Auftraggeber für diese Website bereitgestellt; Bild- und Markenrechte verbleiben bei den jeweiligen Rechteinhabern.",
+      width: 1122, height: 1402, fit: "contain",
+    },
+    body: [
+      { heading: "Aufklären. Vernetzen. Verändern.", text: "Für Donnerstag, den 15. Oktober 2026, wird ab 19 Uhr ein offenes Treffen zur Neugründung der DHV-Ortsgruppe Kassel angekündigt. Treffpunkt ist das Haze & Chill Café in der Kölnischen Straße 12–14 in Kassel." },
+      { heading: "Gemeinsam für Kassel und Umgebung", text: "Der Flyer nennt eine vernünftige Drogenpolitik, Cannabis-Normalisierung und mehr Aufklärung als Anliegen. Weitere Themen sind Jugendschutz statt Kriminalisierung, Aufklärung zu Safer Use, Gemeinschaft und ein regelmäßiger Stammtisch sowie Infostände und Aktionen." },
+      { heading: "Kein Vorwissen nötig", text: "Das Treffen ist als offener Austausch mit Gleichgesinnten angekündigt. Auch ohne Vorkenntnisse kannst du dabei sein und deine Perspektive einbringen. Eine Endzeit, Teilnahmegebühr oder verbindliche Anmeldung sind im Flyer nicht angegeben." },
+      { heading: "In Verbindung bleiben", text: "Das für diese Website mitgeteilte Facebook-Profil ist unten verlinkt. Die Ankündigung des Gründungstreffens ist unabhängig vom geplanten wiederkehrenden Cannabis-Testformat: Für diesen Abend werden keine Tests, Preise oder Teilnahme der Living Soil Crew angekündigt." },
+    ],
+  },
   {
     id: "event-haze-chill", slug: "treffen-haze-chill-9-oktober-2026",
     title: "Treffen im Haze & Chill mit DHV & Living Soil Crew", type: "Lokales Treffen",

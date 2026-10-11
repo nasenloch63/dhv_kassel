@@ -31,6 +31,8 @@ pnpm dev
 - Der Rueckblick `rueckblick-haze-chill-living-soil-crew` und die Veranstaltung vom 09.10.2026 basieren auf Angaben des Auftraggebers. Die Adresse wurde auf der Cafe-Website geprueft. Messergebnisse, genaue Betraege und Namen wurden nicht ergaenzt.
 - Fuer echte Veranstaltungsfotos freigegebene Dateien unter `public/images/` ablegen und im `gallery`-Array des Rueckblicks ergaenzen. `pendingEventPhotos: 3` zeigt derzeit drei Fotoplatzhalter; nach dem Einpflegen auf `0` setzen. Bestehende Crew-Logos nicht als Veranstaltungsfoto beschriften.
 - Das wiederkehrende Format `haze-chill-wiederkehrendes-treffen` hat bewusst kein Datum und keine Anmeldung. Folgetermin, Turnus, Testangebot und Teilnahmebedingungen vor der Ankuendigung bestaetigen.
+- Das neue `offenes-gruendungstreffen-15-oktober-2026` verwendet `status: "announced"`: Termin und Beginn laut bereitgestelltem Flyer, keine unabhaengige Bestaetigung durch Facebook oder den Bundesverband. `flyer` zeigt das Originalmotiv vollstaendig; `announcementUrl` verlinkt das mitgeteilte Facebook-Profil, keine erfundene Facebook-Event-URL.
+- Die prominenten Facebook-Buttons nutzen zentral `site.facebookUrl`. Es gibt keine Facebook-Einbettung, Tracking-Skripte oder Anmeldung innerhalb dieser Website.
 
 ## Pruefen und exportieren
 
