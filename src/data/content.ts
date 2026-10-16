@@ -23,6 +23,7 @@ export interface Event {
   description: string; body: Paragraph[]; source?: Source;
   date?: string; reportLabel?: string; relatedPostSlug?: string;
   flyer?: MediaAsset; announcementUrl?: string;
+  recurrence?: { frequency: "monthly"; weekday: 4; occurrence: 3; time: "19:00"; timeZone: "Europe/Berlin" };
 }
 export const site = {
   name: "DHV-Ortsgruppe Kassel", origin: "https://dhv-kassel-demo.vercel.app",
@@ -30,7 +31,7 @@ export const site = {
   groupsUrl: "https://hanfverband.de/aktiv-vor-ort", datesUrl: "https://hanfverband.de/termine",
   facebookUrl: "https://www.facebook.com/profile.php?id=61593238476360",
   instagramUrl: "https://www.instagram.com/dhv_kassel/",
-  localStatus: "Für Kassel wurde bei der Recherche am 10.10.2026 kein Eintrag in der offiziellen DHV-Ortsgruppenliste gefunden. Der offizielle Ortsgruppenstatus und lokale Ansprechpartner sind weiterhin nicht unabhängig bestätigt. Der Rückblick auf den 9. Oktober basiert auf Angaben für diese Website.",
+  localStatus: "Für Kassel wurde bei der Recherche am 10.10.2026 kein Eintrag in der offiziellen DHV-Ortsgruppenliste gefunden. Der offizielle Ortsgruppenstatus und namentliche Ansprechpartner sind weiterhin nicht unabhängig bestätigt. Die lokalen Rückblicke und der monatliche Treffrhythmus basieren auf Angaben für diese Website.",
 };
 export const dhvMedia = {
   logo: {
@@ -110,7 +111,39 @@ export const hazeChillPhotos: MediaAsset[] = [
     "fit": "contain"
   }
 ];
+export const monthlyMeeting = {
+  slug: "monatliches-treffen-kassel",
+  schedule: "Jeden 3. Donnerstag im Monat",
+  timeLabel: "Ab 19:00 Uhr",
+  venue: "Haze & Chill Café",
+  location: "Haze & Chill Café · Kölnische Straße 12–14, 34117 Kassel",
+  recurrence: { frequency: "monthly", weekday: 4, occurrence: 3, time: "19:00", timeZone: "Europe/Berlin" } as const,
+};
+export const foundingMeetingFlyer: MediaAsset = {
+  src: "/images/events/gruendungstreffen-15-oktober-2026.webp",
+  alt: "Ankündigungsflyer zum offenen Gründungstreffen vom 15. Oktober 2026 ab 19 Uhr im Haze & Chill Café in Kassel",
+  caption: "Ankündigungsflyer zum Treffen vom 15. Oktober 2026 · kein Foto vom Abend",
+  credit: "Vom Auftraggeber für diese Website bereitgestellt; Bild- und Markenrechte verbleiben bei den jeweiligen Rechteinhabern.",
+  width: 1122, height: 1402, fit: "contain",
+};
 export const posts: Post[] = [
+  {
+    id: "post-offenes-treffen-oktober", slug: "erstes-offenes-treffen-15-oktober-2026",
+    title: "Unser erstes offenes Treffen: der Auftakt am 15. Oktober",
+    date: "2026-10-16", eventDate: "2026-10-15", category: "Ortsgruppe",
+    status: "reported", visual: "event", readingMinutes: 2,
+    image: foundingMeetingFlyer,
+    relatedEventSlug: "offenes-gruendungstreffen-15-oktober-2026",
+    reportLabel: "Lokaler Rückblick und Treffrhythmus nach Angaben für diese Website vom 16. Oktober 2026. Dies ist keine offizielle Erklärung des Bundesverbands.",
+    teaser: "Am 15. Oktober haben wir uns um 19 Uhr zum ersten offenen Treffen im Haze & Chill Café getroffen. Künftig sehen wir uns jeden dritten Donnerstag im Monat. Die Bilder vom Abend folgen in Kürze.",
+    body: [
+      { heading: "Der erste gemeinsame Abend", text: "Am Donnerstag, 15. Oktober 2026, fand um 19 Uhr unser erstes offenes Treffen im Haze & Chill Café in Kassel statt. Damit ist der Auftakt für unseren regelmäßigen Austausch vor Ort gemacht. Danke an alle, die dabei waren." },
+      { heading: "Ein fester Termin für die Ortsgruppe", text: "Von jetzt an treffen wir uns jeden dritten Donnerstag im Monat ab 19 Uhr im Haze & Chill Café, Kölnische Straße 12–14, 34117 Kassel. So bekommt der Austausch der DHV-Ortsgruppe Kassel einen festen Platz im Monat." },
+      { heading: "Worum es bei den Treffen geht", text: "Bei unseren monatlichen Treffen sprechen wir über Änderungen und neue Entwicklungen, kommende Events und aktuelle Updates. Außerdem planen wir Aufklärungsarbeit und überlegen gemeinsam, wie wir neue Menschen für das Engagement vor Ort gewinnen können." },
+      { heading: "Bilder vom Abend folgen", text: "Beim ersten offenen Treffen sind Fotos entstanden. Wir bereiten die Bilder gerade für den Rückblick vor und ergänzen die Eindrücke vom 15. Oktober hier in Kürze." },
+      { heading: "Beim nächsten Mal dabei sein", text: "Du möchtest mitdiskutieren, Ideen für Veranstaltungen einbringen oder bei der Aufklärungsarbeit mithelfen? Merke dir den dritten Donnerstag im Monat ab 19 Uhr. Aktuelle Hinweise teilen wir auch auf Facebook und Instagram." },
+    ],
+  },
   {
     id: "post-haze-chill", slug: "rueckblick-haze-chill-living-soil-crew",
     title: "Haze & Chill: Community, gute Stimmung und Preise",
@@ -206,27 +239,38 @@ export const posts: Post[] = [
 ];
 export const events: Event[] = [
   {
+    id: "event-monthly-kassel", slug: monthlyMeeting.slug,
+    title: "Monatliches Treffen der DHV-Ortsgruppe Kassel", type: "Monatliches Ortsgruppentreffen",
+    status: "announced", phase: "upcoming", startsAt: null, endsAt: null,
+    dateLabel: monthlyMeeting.schedule, timeLabel: monthlyMeeting.timeLabel,
+    location: monthlyMeeting.location, recurrence: monthlyMeeting.recurrence,
+    announcementUrl: site.facebookUrl,
+    relatedPostSlug: "erstes-offenes-treffen-15-oktober-2026",
+    reportLabel: "Der monatliche Rhythmus, Beginn und Treffpunkt wurden für diese Website am 16. Oktober 2026 mitgeteilt: jeden dritten Donnerstag im Monat ab 19 Uhr im Haze & Chill Café.",
+    description: "Jeden dritten Donnerstag ab 19 Uhr im Haze & Chill Café: Austausch über Änderungen, neue Entwicklungen, Events, Aufklärungsarbeit, Mitgliedergewinnung und aktuelle Updates.",
+    body: [
+      { heading: "Ein fester Abend im Monat", text: "Die DHV-Ortsgruppe Kassel trifft sich künftig jeden dritten Donnerstag im Monat ab 19 Uhr im Haze & Chill Café in der Kölnischen Straße 12–14 in Kassel." },
+      { heading: "Austauschen und gemeinsam planen", text: "Auf dem Programm stehen Änderungen und neue Entwicklungen, anstehende Veranstaltungen, Aufklärungspläne, Ideen zur Gewinnung neuer Mitstreiterinnen und Mitstreiter sowie Updates aus der Gruppe. Eigene Fragen und Ideen sind willkommen." },
+      { heading: "So hat es angefangen", text: "Das erste offene Treffen fand am 15. Oktober 2026 um 19 Uhr statt. Den Rückblick auf den Auftakt findest du im Blog. Die Fotos vom Abend werden dort in Kürze ergänzt." },
+      { heading: "Aktuelle Hinweise", text: "Der feste Rhythmus gilt für die monatlichen Ortsgruppentreffen. Das separate Cannabis-Testformat wird dadurch nicht automatisch für jeden Termin angekündigt. Aktuelle Hinweise zum Treffen teilen wir über Facebook und Instagram." },
+    ],
+  },
+  {
     id: "event-gruendung-2026", slug: "offenes-gruendungstreffen-15-oktober-2026",
     title: "Kassel braucht dich: offenes Gründungstreffen",
-    type: "Offenes Gründungstreffen", status: "announced", phase: "upcoming",
+    type: "Offenes Gründungstreffen", status: "reported", phase: "past",
     date: "2026-10-15", startsAt: "2026-10-15T19:00:00+02:00", endsAt: null,
     dateLabel: "Donnerstag, 15. Oktober 2026", timeLabel: "Ab 19:00 Uhr",
     location: "Haze & Chill Café · Kölnische Straße 12–14, 34117 Kassel",
     announcementUrl: site.facebookUrl,
-    reportLabel: "Ankündigung laut bereitgestelltem Veranstaltungsflyer, übernommen am 11. Oktober 2026. Datum, Beginn und Ort sind dem Flyer entnommen. Das verlinkte Facebook-Profil wurde für diese Website mitgeteilt; die Ankündigung konnte dort nicht unabhängig geprüft werden.",
-    description: "Offenes Treffen zur Neugründung der DHV-Ortsgruppe Kassel. Gemeinsam für Aufklärung, Vernetzung und eine vernünftige Drogenpolitik in Kassel und Umgebung. Kein Vorwissen nötig.",
-    flyer: {
-      src: "/images/events/gruendungstreffen-15-oktober-2026.webp",
-      alt: "Flyer: Kassel braucht dich. Offenes Treffen zur Neugründung der DHV-Ortsgruppe Kassel am Donnerstag, 15. Oktober 2026 ab 19 Uhr im Haze & Chill Café, Kölnische Straße 12–14, 34117 Kassel. Kein Vorwissen nötig.",
-      caption: "Bereitgestellter Veranstaltungsflyer · 15. Oktober 2026",
-      credit: "Vom Auftraggeber für diese Website bereitgestellt; Bild- und Markenrechte verbleiben bei den jeweiligen Rechteinhabern.",
-      width: 1122, height: 1402, fit: "contain",
-    },
+    relatedPostSlug: "erstes-offenes-treffen-15-oktober-2026",
+    reportLabel: "Das erste offene Treffen wurde für diese Website am 16. Oktober 2026 als stattgefunden bestätigt. Datum, Beginn und Ort entsprechen dem zuvor bereitgestellten Flyer.",
+    description: "Unser erstes offenes Treffen fand am 15. Oktober 2026 um 19 Uhr im Haze & Chill Café statt. Der Auftakt für die monatlichen Treffen ist im Blog dokumentiert; Bilder folgen dort in Kürze.",
+    flyer: foundingMeetingFlyer,
     body: [
-      { heading: "Aufklären. Vernetzen. Verändern.", text: "Für Donnerstag, den 15. Oktober 2026, wird ab 19 Uhr ein offenes Treffen zur Neugründung der DHV-Ortsgruppe Kassel angekündigt. Treffpunkt ist das Haze & Chill Café in der Kölnischen Straße 12–14 in Kassel." },
-      { heading: "Gemeinsam für Kassel und Umgebung", text: "Der Flyer nennt eine vernünftige Drogenpolitik, Cannabis-Normalisierung und mehr Aufklärung als Anliegen. Weitere Themen sind Jugendschutz statt Kriminalisierung, Aufklärung zu Safer Use, Gemeinschaft und ein regelmäßiger Stammtisch sowie Infostände und Aktionen." },
-      { heading: "Kein Vorwissen nötig", text: "Das Treffen ist als offener Austausch mit Gleichgesinnten angekündigt. Auch ohne Vorkenntnisse kannst du dabei sein und deine Perspektive einbringen. Eine Endzeit, Teilnahmegebühr oder verbindliche Anmeldung sind im Flyer nicht angegeben." },
-      { heading: "In Verbindung bleiben", text: "Das für diese Website mitgeteilte Facebook-Profil ist unten verlinkt. Die Ankündigung des Gründungstreffens ist unabhängig vom geplanten wiederkehrenden Cannabis-Testformat: Für diesen Abend werden keine Tests, Preise oder Teilnahme der Living Soil Crew angekündigt." },
+      { heading: "Rückblick auf den Auftakt", text: "Am Donnerstag, 15. Oktober 2026, fand um 19 Uhr das erste offene Treffen im Haze & Chill Café in Kassel statt. Der neue Blogbeitrag hält den Auftakt fest." },
+      { heading: "So geht es weiter", text: "Künftig trifft sich die DHV-Ortsgruppe Kassel jeden dritten Donnerstag im Monat ab 19 Uhr an diesem Ort. Bei den Treffen geht es um Änderungen, neue Entwicklungen, Veranstaltungen, Aufklärungsarbeit, Mitgliedergewinnung und Updates." },
+      { heading: "Fotos werden ergänzt", text: "Beim Treffen sind Fotos entstanden. Die Bilder vom Abend werden im Blogbeitrag ergänzt, sobald sie bereitstehen." },
     ],
   },
   {

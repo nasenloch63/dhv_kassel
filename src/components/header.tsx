@@ -7,7 +7,7 @@ import { DhvLogo } from "./media";
 import { FacebookButton } from "./facebook-button";
 import { InstagramButton } from "./instagram-button";
 
-const links = [{ href: "/", label: "Startseite" }, { href: "/news/", label: "News & Blog" }, { href: "/veranstaltungen/", label: "Veranstaltungen" }, { href: "/ueber-uns/", label: "Über uns" }];
+const links = [{ href: "/", label: "Startseite" }, { href: "/news/", label: "News & Blog" }, { href: "/veranstaltungen/", label: "Veranstaltungen" }, { href: "/ueber-uns/", label: "Über uns" }, { href: "/unterstuetzen/", label: "Unterstützen" }];
 export function Header() {
   const pathname = usePathname(); const [open, setOpen] = useState(false); const toggle = useRef<HTMLButtonElement>(null);
   useEffect(() => { setOpen(false); }, [pathname]);

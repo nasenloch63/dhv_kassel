@@ -31,7 +31,7 @@ pnpm dev
 - Der Rueckblick `rueckblick-haze-chill-living-soil-crew` und die Veranstaltung vom 09.10.2026 basieren auf Angaben des Auftraggebers. Die Adresse wurde auf der Cafe-Website geprueft. Messergebnisse, genaue Betraege und Namen wurden nicht ergaenzt.
 - Der Rueckblick verwendet ausgewaehlte Veranstaltungsfotos unter `public/images/events/haze-chill-2026-10-09/` und kurze MP4-Videos unter `public/videos/events/`. Originalmedien bleiben im bereitgestellten Ordner erhalten. `galleryTitle`, `socialLinks` und `videos` ergaenzen die redaktionellen Inhalte.
 - Das wiederkehrende Format `haze-chill-wiederkehrendes-treffen` hat bewusst kein Datum und keine Anmeldung. Folgetermin, Turnus, Testangebot und Teilnahmebedingungen vor der Ankuendigung bestaetigen.
-- Das neue `offenes-gruendungstreffen-15-oktober-2026` verwendet `status: "announced"`: Termin und Beginn laut bereitgestelltem Flyer, keine unabhaengige Bestaetigung durch Facebook oder den Bundesverband. `flyer` zeigt das Originalmotiv vollstaendig; `announcementUrl` verlinkt das mitgeteilte Facebook-Profil, keine erfundene Facebook-Event-URL.
+- `offenes-gruendungstreffen-15-oktober-2026` ist seit der Rueckmeldung vom 16.10.2026 als vergangen und `reported` erfasst. Der zugehoerige Blogpost `erstes-offenes-treffen-15-oktober-2026` dokumentiert den ersten offenen Abend um 19 Uhr. Der Originalflyer ist kein Foto vom Abend. Fotos werden erst nach Bereitstellung eingepflegt; bis dahin ist ausschliesslich ein Texthinweis vorhanden, keine leeren Bildplaetze.
 - Die prominenten Facebook-Buttons nutzen zentral `site.facebookUrl`. Es gibt keine Facebook-Einbettung, Tracking-Skripte oder Anmeldung innerhalb dieser Website.
 
 ## Pruefen und exportieren
@@ -58,3 +58,11 @@ Die Demo ist absichtlich `noindex` und blockiert Suchmaschinen ueber `robots.txt
 ## Schriftarten
 
 Dosis fuer Ueberschriften, Navigation und Buttons; DejaVu Condensed fuer Fliesstext, wie am 11.10.2026 auf hanfverband.de geprueft. Die Original-Schriftdateien liegen unter `public/fonts/`, die Zuordnung in `src/app/fonts.css` und `globals.css`. Keine externen Schriftanfragen. Lizenztexte fuer Dosis (SIL OFL) und DejaVu liegen bei den Schriftdateien und sind auf der Quellenseite verlinkt.
+
+## Monatliches Treffen
+
+`monthlyMeeting` in `src/data/content.ts` pflegt zentral den dritten Donnerstag im Monat, Beginn 19 Uhr und das Haze & Chill Cafe. Das Ereignis `monatliches-treffen-kassel` verwendet eine strukturierte `recurrence` mit Monatsrhythmus, Wochentag 4, Vorkommen 3, Uhrzeit 19:00 und Zeitzone Europe/Berlin. Es ist absichtlich kein einzelner Folgetermin festgeschrieben, der ohne erneuten Build veralten wuerde. Die Regel bleibt unabhaengig vom gesonderten Cannabis-Testformat.
+
+## Unterstuetzen
+
+`/unterstuetzen/` greift die fuenf Wege der offiziellen DHV-Unterstuetzen-Seite auf. Inhalte, Ziel-URLs und Grafikquellen liegen in `src/data/support.ts`. Original-Piktogramme sind unter `public/images/dhv/support/` lokal gespeichert; Rechte und Quellen stehen auf `/quellen/`. Die Demo nimmt keine Zahlungen, Kontodaten oder Foerderantraege entgegen. Alle entsprechenden Aktionen verlinken direkt die offiziellen Angebote.

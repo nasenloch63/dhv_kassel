@@ -67,6 +67,13 @@ h3 { font-size: 21px; }
 .hero h1 span { color: var(--lime); }
 .hero-description { margin-top: 22px; font-size: 23px; line-height: 1.45; font-weight: 400; }
 .hero-context { font-size: 13px; margin-top: 12px; color: #e3e9e4; }
+.hero-meeting-schedule { font-family: "Dosis", Arial, sans-serif; }
+.hero-meeting-schedule strong { display: block; color: var(--lime); font-size: 27px; font-weight: 700; }
+.hero-meeting-schedule > span { display: block; font-size: 22px; margin-top: 3px; }
+@media (max-width: 600px) {
+  .hero-meeting-schedule strong { font-size: 23px; }
+  .hero-meeting-schedule > span { font-size: 20px; }
+}
 .hero-buttons { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 29px; }
 .hero-caption { position: absolute; right: 0; bottom: 40px; display: flex; align-items: center; gap: 7px; font-size: 12px; color: white; text-shadow: 0 1px 5px #142d1c; background: #112e2260; padding: 7px 11px; }
 .hero-credit { position: absolute; right: 15px; bottom: 8px; font-size: 9px; padding: 1px 5px; color: #fff; background: #162e2280; }
@@ -546,6 +553,56 @@ h3 { font-size: 21px; }
   .next-event-date { margin-top: 20px; }
   .next-event-actions { gap: 10px; }
   .events-aside > .facebook-button { grid-column: 1 / -1; margin-top: 8px; }
+}
+.support-intro { padding-block: 30px 0; }
+.support-row { border-bottom: 1px solid var(--line); }
+.support-row:nth-child(even) { background: #f6f8f4; }
+.support-row-inner { display: grid; grid-template-columns: 210px minmax(0, 1fr); gap: 65px; align-items: center; padding-block: 44px; }
+.support-art { text-align: center; }
+.support-icon { width: 200px; height: 140px; object-fit: contain; margin-inline: auto; display: block; }
+.support-art > span { font-size: 9px; color: var(--muted); display: block; margin-top: 8px; }
+.support-copy { max-width: 700px; }
+.support-copy h2 { font-size: 32px; }
+.support-copy > p:not(.eyebrow) { margin-block: 15px 22px; color: var(--muted); font-size: 15px; }
+.support-local { background: var(--forest); color: white; padding-block: 50px; }
+.support-local-inner { display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+.support-local-inner > div > svg { color: var(--lime); margin-bottom: 15px; }
+.support-local .eyebrow { color: var(--lime); }
+.support-local h2 { font-size: 33px; }
+.support-local p:not(.eyebrow) { color: #d1dfd5; font-size: 14px; margin-top: 15px; }
+.support-local-inner > .button { flex-shrink: 0; }
+.support-meeting { display: flex; flex-direction: column; gap: 8px; margin-top: 20px; font-size: 12px; }
+.support-meeting > span { display: flex; align-items: center; gap: 9px; }
+.support-source { padding-block: 30px; font-size: 11px; color: var(--muted); }
+.support-source a { text-decoration: underline; text-underline-offset: 3px; }
+.support-home { background: #edf2e2; border-block: 1px solid #dce5cd; }
+.support-home-inner { display: flex; align-items: center; gap: 25px; padding-block: 40px; }
+.support-home-inner > svg { color: var(--green); }
+.support-home-inner > div { flex: 1; }
+.support-home h2 { font-size: 29px; }
+.support-home p:not(.eyebrow) { font-size: 13px; color: var(--muted); margin-top: 10px; }
+.support-home .eyebrow { margin-bottom: 8px; }
+@media (max-width: 1000px) {
+  .desktop-nav { gap: 17px; }
+  .header-inner { gap: 18px; }
+}
+@media (max-width: 800px) {
+  .support-row-inner { grid-template-columns: 160px minmax(0, 1fr); gap: 30px; }
+  .support-icon { width: 150px; height: 120px; }
+  .support-local-inner { align-items: flex-start; flex-direction: column; gap: 25px; }
+  .support-home-inner { flex-wrap: wrap; }
+  .support-home-inner > .button { margin-left: 59px; }
+}
+@media (max-width: 600px) {
+  .support-row-inner { grid-template-columns: 1fr; gap: 24px; padding-block: 32px; }
+  .support-art { text-align: left; }
+  .support-icon { width: 145px; height: 100px; margin-left: 0; }
+  .support-copy h2 { font-size: 29px; }
+  .support-copy > p:not(.eyebrow) { font-size: 14px; }
+  .support-home-inner { gap: 20px; }
+  .support-home-inner > svg { display: none; }
+  .support-home-inner > div { flex-basis: 100%; }
+  .support-home-inner > .button { margin-left: 0; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } }
 .event-gallery-image img { padding: 0; }
