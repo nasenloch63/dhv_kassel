@@ -5,6 +5,7 @@ export interface Paragraph { heading?: string; text: string }
 export interface MediaAsset {
   src: string; alt: string; caption: string; credit: string;
   width: number; height: number; fit?: "cover" | "contain";
+  displayRatio?: string;
 }
 export interface Post {
   id: string; slug: string; title: string; date: string; category: Category;
@@ -22,6 +23,7 @@ export interface Event {
   dateLabel: string; timeLabel: string; location: string; type: string;
   description: string; body: Paragraph[]; source?: Source;
   date?: string; reportLabel?: string; relatedPostSlug?: string;
+  relatedPostLabel?: string; participationNote?: string;
   flyer?: MediaAsset; announcementUrl?: string;
   recurrence?: { frequency: "monthly"; weekday: 4; occurrence: 3; time: "19:00"; timeZone: "Europe/Berlin" };
 }
@@ -31,6 +33,7 @@ export const site = {
   groupsUrl: "https://hanfverband.de/aktiv-vor-ort", datesUrl: "https://hanfverband.de/termine",
   facebookUrl: "https://www.facebook.com/profile.php?id=61593238476360",
   instagramUrl: "https://www.instagram.com/dhv_kassel/",
+  whatsappUrl: "https://whatsapp.com/channel/0029Vb9xUVx65yD5G8RTUd2L",
   localStatus: "Für Kassel wurde bei der Recherche am 10.10.2026 kein Eintrag in der offiziellen DHV-Ortsgruppenliste gefunden. Der offizielle Ortsgruppenstatus und namentliche Ansprechpartner sind weiterhin nicht unabhängig bestätigt. Die lokalen Rückblicke und der monatliche Treffrhythmus basieren auf Angaben für diese Website.",
 };
 export const dhvMedia = {
@@ -126,7 +129,29 @@ export const foundingMeetingFlyer: MediaAsset = {
   credit: "Vom Auftraggeber für diese Website bereitgestellt; Bild- und Markenrechte verbleiben bei den jeweiligen Rechteinhabern.",
   width: 1122, height: 1402, fit: "contain",
 };
+export const cannaCupFlyer: MediaAsset = {
+  src: "/images/events/canna-cup-6-november-2026.webp",
+  alt: "Veranstaltungsflyer: Kassels zweiter Canna-Cup von Haze & Chill Café und Living Soil Crew am 6. November 2026 um 19 Uhr, Kölnische Straße 12–14, 34117 Kassel.",
+  caption: "Bereitgestellter Ankündigungsflyer · zweiter Canna-Cup am 6. November 2026",
+  credit: "Haze & Chill Café × Living Soil Crew · Flyer vom Auftraggeber bereitgestellt",
+  width: 945, height: 2048, fit: "cover", displayRatio: "945 / 1420",
+};
 export const posts: Post[] = [
+  {
+    id: "post-canna-cup-november", slug: "zweiter-canna-cup-6-november-2026",
+    title: "Kassels zweiter Canna-Cup: am 6. November im Haze & Chill",
+    date: "2026-10-23", eventDate: "2026-11-06", category: "Aktionen",
+    status: "announced", visual: "event", readingMinutes: 2,
+    image: cannaCupFlyer, relatedEventSlug: "zweiter-canna-cup-6-november-2026",
+    reportLabel: "Ankündigung nach dem am 23. Oktober 2026 bereitgestellten Flyer. Als präsentierende Beteiligte sind Haze & Chill Café und Living Soil Crew genannt; eine Veranstalterrolle des DHV wird nicht behauptet.",
+    teaser: "Haze & Chill Café und Living Soil Crew kündigen Kassels zweiten Canna-Cup an: am Freitag, 6. November 2026, um 19 Uhr. Dazu gibt es einen neuen WhatsApp-Kanal mit aktuellen News aus Kassel.",
+    body: [
+      { heading: "Ein neuer Termin für Kassel", text: "Am Freitag, 6. November 2026, ist im Haze & Chill Café der zweite Canna-Cup geplant. Beginn ist um 19 Uhr in der Kölnischen Straße 12–14, 34117 Kassel. Haze & Chill Café und die Living Soil Crew präsentieren die Veranstaltung laut dem bereitgestellten Flyer." },
+      { heading: "Community, Challenges und Preise", text: "Der Flyer stellt Community, Wissen und Leidenschaft in den Mittelpunkt und kündigt Challenges sowie Preise an. Welche Aufgaben, Bewertungskriterien und Teilnahmebedingungen genau gelten, ist noch nicht näher angegeben. Konkrete Gebühren, Messverfahren oder Preise werden deshalb hier nicht vorweggenommen." },
+      { heading: "Neuigkeiten jetzt auch über WhatsApp", text: "Für die DHV-Ortsgruppe Kassel gibt es jetzt einen WhatsApp-Kanal mit aktuellen News. Dort bleibst du mit den Neuigkeiten aus Kassel verbunden. Der Kanal ist auf dieser Website verlinkt; du kannst ihm direkt über WhatsApp folgen." },
+      { heading: "Cup und monatliches Treffen sind zwei Termine", text: "Der Canna-Cup am 6. November ist eine eigene Veranstaltung. Unser monatliches Ortsgruppentreffen bleibt jeden dritten Donnerstag im Monat ab 19 Uhr im Haze & Chill Café. Der neue Cup-Termin ersetzt diesen Rhythmus nicht." },
+    ],
+  },
   {
     id: "post-offenes-treffen-oktober", slug: "erstes-offenes-treffen-15-oktober-2026",
     title: "Unser erstes offenes Treffen: der Auftakt am 15. Oktober",
@@ -239,6 +264,24 @@ export const posts: Post[] = [
 ];
 export const events: Event[] = [
   {
+    id: "event-canna-cup-november", slug: "zweiter-canna-cup-6-november-2026",
+    title: "Kassels zweiter Canna-Cup", type: "Canna-Cup",
+    status: "announced", phase: "upcoming",
+    date: "2026-11-06", startsAt: "2026-11-06T19:00:00+01:00", endsAt: null,
+    dateLabel: "Freitag, 6. November 2026", timeLabel: "Ab 19:00 Uhr",
+    location: "Haze & Chill Café · Kölnische Straße 12–14, 34117 Kassel",
+    flyer: cannaCupFlyer, relatedPostSlug: "zweiter-canna-cup-6-november-2026",
+    relatedPostLabel: "Zur Ankündigung im Blog",
+    participationNote: "Teilnahmebedingungen, mögliche Gebühren, Ablauf und konkrete Preise sind noch nicht näher angegeben. Der Flyer nennt Haze & Chill Café und Living Soil Crew.",
+    reportLabel: "Datum, Beginn, Ort und präsentierende Beteiligte laut dem am 23. Oktober 2026 bereitgestellten Flyer. Der Cup ist vom monatlichen Ortsgruppentreffen getrennt; eine Veranstalterrolle des DHV ist nicht angegeben.",
+    description: "Haze & Chill Café und Living Soil Crew präsentieren den zweiten Canna-Cup in Kassel. Laut Flyer sind Challenges, Community-Austausch und Preise angekündigt.",
+    body: [
+      { heading: "Wann und wo", text: "Der zweite Canna-Cup ist für Freitag, 6. November 2026, ab 19 Uhr im Haze & Chill Café angekündigt. Die Adresse lautet Kölnische Straße 12–14, 34117 Kassel. Eine Endzeit ist nicht angegeben." },
+      { heading: "Was angekündigt ist", text: "Haze & Chill Café und Living Soil Crew werden auf dem Flyer als präsentierende Beteiligte genannt. Angekündigt sind Challenges, Austausch in der Community und Preise. Einzelheiten zu Ablauf, Gebühren, Bewertung und Teilnahmebedingungen stehen noch aus." },
+      { heading: "Aktuelle News aus Kassel", text: "Die Ortsgruppe hat jetzt auch einen WhatsApp-Kanal für aktuelle News. Den vollständigen Kanal-Link findest du hier auf der Seite und im Blogbeitrag zur Veranstaltung." },
+    ],
+  },
+  {
     id: "event-monthly-kassel", slug: monthlyMeeting.slug,
     title: "Monatliches Treffen der DHV-Ortsgruppe Kassel", type: "Monatliches Ortsgruppentreffen",
     status: "announced", phase: "upcoming", startsAt: null, endsAt: null,
@@ -291,13 +334,13 @@ export const events: Event[] = [
   },
   {
     id: "event-haze-series", slug: "haze-chill-wiederkehrendes-treffen",
-    title: "Haze & Chill: Austausch & Cannabis-Tests", type: "Wiederkehrendes Format",
+    title: "Haze & Chill: weiteres Cannabis-Testformat", type: "Weitere Planung",
     status: "planned", phase: "upcoming", startsAt: null, endsAt: null,
     dateLabel: "Folgetermin noch offen", timeLabel: "Uhrzeit noch offen",
     location: "Haze & Chill · Kölnische Straße 12–14, Kassel",
     relatedPostSlug: "rueckblick-haze-chill-living-soil-crew",
     reportLabel: "Die Wiederholung wurde für diese Website angekündigt. Datum, Turnus, Beteiligte, Testangebot und Teilnahmebedingungen eines Folgetermins müssen noch bestätigt werden.",
-    description: "Das Treffen im Haze & Chill soll wiederkehren. Nach dem Auftakt am 9. Oktober warten wir noch auf den nächsten bestätigten Termin.",
+    description: "Für das separate Testformat sind weitere Details noch offen. Der zweite Canna-Cup am 6. November ist als eigener Termin mit eigenem Flyer eingetragen; ein konkretes Testangebot ist dort noch nicht bestätigt.",
     body: [
       { heading: "Nach dem Auftakt geht es weiter", text: "Der gut besuchte Abend am 9. Oktober 2026 soll der Anfang eines wiederkehrenden Formats sein. Der geplante Rahmen ist ein Treffen im Haze & Chill mit Austausch und Cannabis-Tests." },
       { heading: "Was für den nächsten Abend noch offen ist", text: "Es gibt noch keinen festgelegten Folgetermin oder regelmäßigen Turnus. Uhrzeit, das konkrete Testangebot, ein etwaiger Betrag, die beteiligten Personen und Teilnahmebedingungen werden für jeden Termin gesondert bestätigt." },

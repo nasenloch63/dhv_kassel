@@ -513,6 +513,36 @@ h3 { font-size: 21px; }
 .facebook-button:hover { background: #0c4c9c; border-color: #0c4c9c; }
 .instagram-button { background: #8c2858; color: #fff; border-color: #8c2858; gap: 11px; }
 .instagram-button:hover { background: #6b1d43; border-color: #6b1d43; }
+.whatsapp-button { background: #126347; color: #fff; border-color: #126347; gap: 11px; }
+.whatsapp-button:hover { background: #0c4934; border-color: #0c4934; }
+.prose .whatsapp-button { color: #fff !important; text-decoration: none !important; }
+.mobile-nav > .whatsapp-button { color: #fff; justify-content: center; padding: 14px; margin-top: 10px; border-bottom: 0; }
+.whatsapp-band { background: #e9f3f0; border-block: 1px solid #d6e7df; }
+.whatsapp-band-inner { display: flex; align-items: center; gap: 24px; padding-block: 28px; }
+.whatsapp-band-inner > svg { color: #126347; }
+.whatsapp-band-inner > div { flex: 1; }
+.whatsapp-band h2 { font-size: 25px; }
+.whatsapp-band p:not(.eyebrow) { font-size: 13px; color: var(--muted); margin-top: 7px; }
+.whatsapp-band .eyebrow { margin-bottom: 6px; }
+.article-page + .whatsapp-band { margin-top: 45px; }
+.event-facts > .whatsapp-button { margin-top: 12px; width: 100%; }
+.event-facts > .whatsapp-button + .button { margin-top: 12px; }
+.listing-social { display: flex; flex-wrap: wrap; gap: 12px; }
+.article-visual.poster-article { max-width: 560px; }
+.poster-article > a { display: block; }
+.article-visual .poster-media { aspect-ratio: var(--poster-ratio, 2 / 3); background: #050a05; }
+.flyer-display { position: relative; width: 100%; overflow: hidden; }
+@media (max-width: 800px) {
+  .whatsapp-band-inner { flex-wrap: wrap; }
+  .whatsapp-band-inner > .button { margin-left: 54px; }
+}
+@media (max-width: 600px) {
+  .whatsapp-band-inner { gap: 15px; padding-block: 25px; }
+  .whatsapp-band-inner > svg { display: none; }
+  .whatsapp-band-inner > div { flex-basis: 100%; }
+  .whatsapp-band-inner > .button { margin-left: 0; }
+  .whatsapp-band h2 { font-size: 25px; }
+}
 .prose .instagram-button { color: #fff !important; text-decoration: none !important; }
 .mobile-nav > .instagram-button { color: #fff; justify-content: center; padding: 14px; margin-top: 10px; border-bottom: 0; }
 .hero-social-buttons { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 12px; }

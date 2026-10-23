@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, CalendarDays, Clock3, MapPin } from "lucide-react";
 import { FacebookButton } from "@/components/facebook-button";
 import { InstagramButton } from "@/components/instagram-button";
+import { WhatsAppButton } from "@/components/whatsapp-button";
 import { EventFlyer } from "@/components/event-flyer";
 import { events, site } from "@/data/content";
 import { StatusBadge, DemoNote, ButtonLink } from "@/components/ui";
@@ -26,15 +27,16 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
       <div className="prose">
         {isDemo ? <DemoNote>{event.phase === "past" ? "Beispiel-Rückblick: Diese Veranstaltung hat nicht nachweislich stattgefunden." : "Demo-Inhalt: Dies ist keine angekündigte Veranstaltung. Datum, Uhrzeit und Treffpunkt sind nicht bestätigt."}</DemoNote> : <DemoNote>{event.reportLabel}</DemoNote>}
         {event.body.map((paragraph, index) => <section key={index}><h2>{paragraph.heading}</h2><p>{paragraph.text}</p></section>)}
-        {event.relatedPostSlug && <div className="report-action"><ButtonLink href={`/news/${event.relatedPostSlug}/`}>Den Rückblick lesen</ButtonLink></div>}
+        {event.relatedPostSlug && <div className="report-action"><ButtonLink href={`/news/${event.relatedPostSlug}/`}>{event.relatedPostLabel ?? "Den Rückblick lesen"}</ButtonLink></div>}
         {event.announcementUrl && <div className="report-action"><FacebookButton>Facebook-Seite besuchen</FacebookButton><InstagramButton /></div>}
       </div>
     </div><aside className="event-facts"><p className="eyebrow">AUF EINEN BLICK</p>
       <div><CalendarDays /><p><strong>{event.dateLabel}</strong><span>{isDemo ? (event.phase === "past" ? "Demo-Archiv" : "Kein bestätigtes Datum") : event.phase === "past" ? "Vergangene Veranstaltung" : event.recurrence ? "Monatlicher Rhythmus" : event.status === "announced" ? "Ankündigung laut Flyer" : "Wiederholung in Planung"}</span></p></div>
       <div><Clock3 /><p><strong>{event.timeLabel}</strong><span>{event.startsAt || event.recurrence ? "Beginn laut Angaben · Endzeit nicht angegeben" : event.phase === "past" && !isDemo ? "Keine Uhrzeit für diesen Rückblick übermittelt" : "Keine verbindliche Zeitangabe"}</span></p></div>
       <div><MapPin /><p><strong>{event.location}</strong>{isDemo ? <span>Kein bestätigter Veranstaltungsort</span> : <a href="https://www.haze-chill.com/" target="_blank" rel="noopener noreferrer">Adresse auf der Café-Website</a>}</p></div>
-      <p className="facts-note">{isDemo ? "Für dieses Beispiel werden keine Anmeldungen angenommen." : event.phase === "past" ? "Dieser Eintrag dokumentiert den vergangenen Abend." : event.recurrence ? "Monatliches Ortsgruppentreffen. Aktuelle Hinweise teilen wir über Facebook und Instagram." : event.status === "announced" ? "Offener Austausch · kein Vorwissen nötig. Eine Anmeldung oder Gebühr ist im Flyer nicht angegeben." : "Ein Folgetermin und Teilnahmebedingungen werden ergänzt, sobald sie bestätigt sind. Noch keine Anmeldung möglich."}</p>
+      <p className="facts-note">{event.participationNote ? event.participationNote : isDemo ? "Für dieses Beispiel werden keine Anmeldungen angenommen." : event.phase === "past" ? "Dieser Eintrag dokumentiert den vergangenen Abend." : event.recurrence ? "Monatliches Ortsgruppentreffen. Aktuelle Hinweise teilen wir über Facebook und Instagram." : event.status === "announced" ? "Offener Austausch · kein Vorwissen nötig. Eine Anmeldung oder Gebühr ist im Flyer nicht angegeben." : "Ein Folgetermin und Teilnahmebedingungen werden ergänzt, sobald sie bestätigt sind. Noch keine Anmeldung möglich."}</p>
       {event.announcementUrl && <FacebookButton>Treffen auf Facebook</FacebookButton>}
+      <WhatsAppButton>Aktuelle News im WhatsApp-Kanal</WhatsAppButton>
       <ButtonLink href={site.datesUrl} external>Offizielle DHV-Termine</ButtonLink>
     </aside></div>
   </article>;

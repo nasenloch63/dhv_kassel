@@ -66,3 +66,9 @@ Dosis fuer Ueberschriften, Navigation und Buttons; DejaVu Condensed fuer Fliesst
 ## Unterstuetzen
 
 `/unterstuetzen/` greift die fuenf Wege der offiziellen DHV-Unterstuetzen-Seite auf. Inhalte, Ziel-URLs und Grafikquellen liegen in `src/data/support.ts`. Original-Piktogramme sind unter `public/images/dhv/support/` lokal gespeichert; Rechte und Quellen stehen auf `/quellen/`. Die Demo nimmt keine Zahlungen, Kontodaten oder Foerderantraege entgegen. Alle entsprechenden Aktionen verlinken direkt die offiziellen Angebote.
+
+## WhatsApp und Canna-Cup
+
+`site.whatsappUrl` ist die zentrale Kanal-URL. Der Kanal wird nur als externer Link geoeffnet, ohne Einbettung oder Nachrichtenabruf. Der Blogpost und Veranstaltungseintrag `zweiter-canna-cup-6-november-2026` basieren auf dem am 23.10.2026 bereitgestellten Flyer: 06.11.2026, 19 Uhr im Haze & Chill Cafe, praesentiert von Haze & Chill und Living Soil Crew. Der Termin ersetzt nicht das monatliche Ortsgruppentreffen.
+
+`cannaCupFlyer` beschreibt die unveraenderte, als WebP gespeicherte Datei. `displayRatio` sorgt nur fuer die Darstellung ohne schwarze Aussenraender; der vollstaendige Flyer bleibt per Bild-Link abrufbar. `relatedPostLabel` unterscheidet auf Veranstaltungsseiten Ankuendigungen von Rueckblicken; `participationNote` verhindert, dass allgemeine Angaben anderer Treffen als Cup-Bedingungen erscheinen.
