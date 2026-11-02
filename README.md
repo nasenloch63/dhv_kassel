@@ -4,9 +4,9 @@ Nicht offizielle, responsive Demowebsite. Eine Ortsgruppe Kassel ist anhand der 
 
 ## Vercel
 
-Produktionsadresse: https://dhv-kassel-demo.vercel.app
+Produktionsadresse: https://www.dhvkassel.de
 
-Vercel-Projekt `dhv-kassel-demo` im Team `Naser Solutions`, verbunden mit `nasenloch63/dhv_kassel`. Der Produktionszweig ist `main`. Die Demo bleibt mit `noindex` gekennzeichnet. Der Zugang richtet sich nach den Deployment-Protection-Einstellungen des Vercel-Projekts.
+Vercel-Projekt `dhv-kassel-demo` im Team `Naser Solutions`, verbunden mit `nasenloch63/dhv_kassel`. Der Produktionszweig ist `main`. Die oeffentliche Website ist auf Wunsch des Betreibers fuer Suchmaschinen freigegeben. Der Zugang zu Vorschau-Deployments richtet sich nach den Deployment-Protection-Einstellungen des Vercel-Projekts.
 
 ## Lokal starten
 
@@ -50,10 +50,10 @@ Next.js App Router, React, Tailwind CSS 4 und Lucide. Der Build erzeugt `out/` f
 - Lokale Ansprechpartner, Betreiberkontakt, echte Taetigkeiten und Termine verifizieren und Demo-Inhalte ersetzen.
 - Impressum und Datenschutzerklaerung fuer den Betreiber und das tatsaechliche Hosting vervollstaendigen.
 - Falls benoetigt, Formular, Newsletter und Anmeldung mit Backend, Datenschutz und Rueckmeldungen implementieren.
-- Domain und `site.origin` aktualisieren; erst nach Freigabe `robots` und Metadaten auf Indexierung umstellen.
+- Bei einem Domainwechsel `site.origin` aktualisieren; die Sitemap und Bild-Metadaten verwenden diese Hauptadresse.
 - Quellen erneut pruefen, Bildnachweis erhalten und Barrierefreiheit redaktionell mitpruefen.
 
-Die Demo ist absichtlich `noindex` und blockiert Suchmaschinen ueber `robots.txt`.
+Die Suchmaschinen-Freigabe wurde am 02.11.2026 vom Betreiber angefordert. `src/app/sitemap.ts` erzeugt `/sitemap.xml` aus den oeffentlichen Seiten sowie allen News- und Veranstaltungseintraegen. Neue Eintraege werden beim naechsten Build automatisch aufgenommen. `robots.txt` erlaubt das Crawling und verweist auf die Sitemap. Die sichtbaren Demo-Hinweise bleiben bestehen.
 
 ## Schriftarten
 

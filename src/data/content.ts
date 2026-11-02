@@ -28,7 +28,7 @@ export interface Event {
   recurrence?: { frequency: "monthly"; weekday: 4; occurrence: 3; time: "19:00"; timeZone: "Europe/Berlin" };
 }
 export const site = {
-  name: "DHV-Ortsgruppe Kassel", origin: "https://dhv-kassel-demo.vercel.app",
+  name: "DHV-Ortsgruppe Kassel", origin: "https://www.dhvkassel.de",
   researchDate: "10.10.2026", contactUrl: "https://hanfverband.de/kontakt",
   groupsUrl: "https://hanfverband.de/aktiv-vor-ort", datesUrl: "https://hanfverband.de/termine",
   facebookUrl: "https://www.facebook.com/profile.php?id=61593238476360",
