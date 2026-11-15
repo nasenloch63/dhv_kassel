@@ -13,6 +13,7 @@ import { getPosts, events, monthlyMeeting } from "@/data/content";
 export default function Home() {
   const featured = getPosts().filter(post => post.status !== "demo").slice(0, 3);
   const localEvents = events.filter(event => event.status !== "demo");
+  const nextMeeting = events.find(event => event.id === "event-dhv-november" && event.phase === "upcoming");
   return <>
     <section className="hero">
       <Image src="/images/kassel.webp" alt="Blick vom Herkules über den Bergpark Wilhelmshöhe auf Kassel" fill priority sizes="100vw" className="hero-image" />
@@ -21,8 +22,8 @@ export default function Home() {
         <p className="hero-eyebrow"><span /> KASSEL. ENGAGIERT. ZUSAMMEN.</p>
         <h1>DHV-Ortsgruppe<br /><span>Kassel</span></h1>
         <p className="hero-description hero-meeting-schedule"><strong>{monthlyMeeting.schedule}</strong><span>Ab 19 Uhr · {monthlyMeeting.venue}</span></p>
-        <p className="hero-context">Austauschen. Aufklären. Gemeinsam die nächsten Schritte planen.</p>
-        <div className="hero-buttons"><ButtonLink href="/ueber-uns/#mitmachen" variant="light">Mitmachen</ButtonLink><ButtonLink href={`/veranstaltungen/${monthlyMeeting.slug}/`} variant="secondary">Zum Treffen</ButtonLink></div>
+        <p className="hero-context">{nextMeeting ? `Nächstes offenes Treffen: ${nextMeeting.dateLabel} · ab 19 Uhr` : "Austauschen. Aufklären. Gemeinsam die nächsten Schritte planen."}</p>
+        <div className="hero-buttons"><ButtonLink href="/ueber-uns/#mitmachen" variant="light">Mitmachen</ButtonLink><ButtonLink href={`/veranstaltungen/${nextMeeting?.slug ?? monthlyMeeting.slug}/`} variant="secondary">Zum Treffen</ButtonLink></div>
         <div className="hero-social-buttons"><FacebookButton /><InstagramButton /></div>
       </div><div className="hero-caption"><MapPin size={14} aria-hidden="true" /> Kassel · Blick vom Herkules</div></div>
       <a href="/quellen/#bildnachweis" className="hero-credit">Foto: Dguendel · CC BY 4.0</a>
