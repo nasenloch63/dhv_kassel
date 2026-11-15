@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight, ArrowUpRight, MapPin, MessagesSquare, Megaphone, UsersRound } from "lucide-react";
 import { ButtonLink, SectionHeading, PostCard, EventRow, ContactBand, DemoNote } from "@/components/ui";
 import { WhatsAppBand } from "@/components/whatsapp-band";
+import { EventFlyer } from "@/components/event-flyer";
 import { SupportBand } from "@/components/support-band";
 import { DhvMediaBand } from "@/components/media";
 import { FacebookButton } from "@/components/facebook-button";
@@ -33,6 +34,16 @@ export default function Home() {
       <span><Megaphone size={21} strokeWidth={1.5} /> Lokal etwas bewegen</span>
       <span><UsersRound size={21} strokeWidth={1.5} /> Gemeinsam aktiv werden</span>
     </div></div>
+    {nextMeeting?.flyer && <section className="next-event-band"><div className="container next-event-inner">
+      <EventFlyer flyer={nextMeeting.flyer} />
+      <div>
+        <p className="eyebrow">NÄCHSTES OFFENES TREFFEN</p>
+        <h2>{nextMeeting.title}</h2>
+        <p className="next-event-date"><strong>{nextMeeting.dateLabel} · {nextMeeting.timeLabel}</strong><span>{nextMeeting.location}</span></p>
+        <p>{nextMeeting.description}</p>
+        <div className="next-event-actions"><ButtonLink href={`/veranstaltungen/${nextMeeting.slug}/`}>Zum Veranstaltungseintrag</ButtonLink></div>
+      </div>
+    </div></section>}
     <WhatsAppBand />
     <section className="section container"><SectionHeading eyebrow="NEUIGKEITEN & PERSPEKTIVEN" title="Was uns bewegt." href="/news/" linkText="Alle Beiträge" /><div className="post-grid">{featured.map(post => <PostCard key={post.id} post={post} />)}</div></section>
     <DhvMediaBand />

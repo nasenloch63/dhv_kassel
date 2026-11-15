@@ -15,6 +15,7 @@ export interface Post {
   eventDate?: string; relatedEventSlug?: string;
   pendingEventPhotos?: number; galleryTitle?: string;
   socialLinks?: { label: string; url: string }[];
+  externalLink?: { label: string; url: string };
   videos?: { src: string; poster: string; caption: string }[];
 }
 export interface Event {
@@ -137,6 +138,26 @@ export const cannaCupFlyer: MediaAsset = {
   width: 1024, height: 1536, fit: "cover", displayRatio: "2 / 3",
 };
 export const posts: Post[] = [
+  {
+    id: "post-terpwrap-giveaway", slug: "haze-chill-terpwrap-giveaway",
+    title: "Haze & Chill × TerpWrap: Giveaway für Kassel",
+    date: "2026-11-15", category: "Aktionen", status: "announced", visual: "action", readingMinutes: 2,
+    teaser: "Haze & Chill Café und TerpWrap verlosen T-Shirts, Überraschungspakete und weitere Specials. Teilnahmeschluss laut Ankündigung: 19. November 2026 um 16 Uhr.",
+    reportLabel: "Aktion von Haze & Chill Café und TerpWrap. Der DHV ist nicht Veranstalter. Die Angaben stammen aus der bereitgestellten Instagram-Ankündigung.",
+    image: { src: "/images/events/terpwrap-giveaway.webp", alt: "Standbild aus dem Giveaway-Reel von Haze & Chill Café und TerpWrap", caption: "Haze & Chill × TerpWrap", credit: "Bereitgestelltes Reel der Veranstalter", width: 542, height: 960, fit: "contain" },
+    videos: [{ src: "/videos/events/terpwrap-giveaway.mp4", poster: "/images/events/terpwrap-giveaway.webp", caption: "Giveaway-Reel · Vorschau ohne Ton" }],
+    externalLink: { label: "Zum Original-Reel auf Instagram", url: "https://www.instagram.com/reel/DfcwI7Foisn/" },
+    socialLinks: [
+      { label: "@haze_and_chill_cafe", url: "https://www.instagram.com/haze_and_chill_cafe/" },
+      { label: "@terpwrap", url: "https://www.instagram.com/terpwrap/" },
+    ],
+    body: [
+      { heading: "Was es zu gewinnen gibt", text: "Laut Ankündigung gibt es exklusive Haze & Chill T-Shirts, Überraschungspakete von TerpWrap und weitere Specials für die Community. Der genaue Inhalt der Pakete ist nicht angegeben." },
+      { heading: "So läuft die Teilnahme", text: "Folge @haze_and_chill_cafe und @terpwrap auf Instagram. Like das Original-Reel, markiere drei Freunde in den Kommentaren und teile das Reel in deiner Story. Markiere dabei die Veranstalter." },
+      { heading: "Teilnahmeschluss: 19. November 2026, 16 Uhr", text: "Nach Angaben der Veranstalter ist die Teilnahme kostenlos und ab 18 Jahren mit Wohnsitz in Deutschland möglich. Nach Teilnahmeschluss wird zufällig ausgelost; die Gewinner werden per Instagram-DM benachrichtigt." },
+      { heading: "Hinweis der Veranstalter", text: "Das Gewinnspiel steht laut Ankündigung in keiner Verbindung zu Instagram und wird von Instagram weder gesponsert noch organisiert. Mit der Teilnahme wird Instagram von der Verantwortung für das Gewinnspiel freigestellt. Maßgeblich ist das Original-Reel." },
+    ],
+  },
   {
     id: "post-canna-cup-november", slug: "zweiter-canna-cup-6-november-2026",
     title: "Rückblick: Kassels zweiter Canna-Cup",
