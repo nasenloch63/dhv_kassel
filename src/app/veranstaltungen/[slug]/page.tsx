@@ -28,6 +28,7 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
         {isDemo ? <DemoNote>{event.phase === "past" ? "Beispiel-Rückblick: Diese Veranstaltung hat nicht nachweislich stattgefunden." : "Demo-Inhalt: Dies ist keine angekündigte Veranstaltung. Datum, Uhrzeit und Treffpunkt sind nicht bestätigt."}</DemoNote> : <DemoNote>{event.reportLabel}</DemoNote>}
         {event.body.map((paragraph, index) => <section key={index}><h2>{paragraph.heading}</h2><p>{paragraph.text}</p></section>)}
         {event.relatedPostSlug && <div className="report-action"><ButtonLink href={`/news/${event.relatedPostSlug}/`}>{event.relatedPostLabel ?? "Den Rückblick lesen"}</ButtonLink></div>}
+        {event.externalLink && <div className="report-action"><ButtonLink href={event.externalLink.url} external>{event.externalLink.label}</ButtonLink></div>}
         {event.announcementUrl && <div className="report-action"><FacebookButton>Facebook-Seite besuchen</FacebookButton><InstagramButton /></div>}
       </div>
     </div><aside className="event-facts"><p className="eyebrow">AUF EINEN BLICK</p>

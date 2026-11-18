@@ -555,7 +555,7 @@ h3 { font-size: 21px; }
 .mobile-nav > .facebook-button { color: #fff; justify-content: center; padding: 14px; margin-top: 15px; border-bottom: 0; }
 .status-badge.announced { background: #e5f0fb; color: #245281; }
 .next-event-band { background: #f0f5e8; border-bottom: 1px solid #d8e3ce; padding-block: 48px; }
-.next-event-inner { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 55px; align-items: center; }
+.next-event-inner { display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: 55px; align-items: center; }
 .event-flyer img { width: 100%; height: auto; display: block; border-radius: 4px; }
 .event-flyer { max-width: 440px; margin-top: 30px; }
 .event-flyer figcaption { font-size: 10px; color: var(--muted); line-height: 1.7; margin-top: 10px; }

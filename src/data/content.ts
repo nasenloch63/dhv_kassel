@@ -26,6 +26,7 @@ export interface Event {
   date?: string; reportLabel?: string; relatedPostSlug?: string;
   relatedPostLabel?: string; participationNote?: string;
   flyer?: MediaAsset; announcementUrl?: string;
+  externalLink?: { label: string; url: string };
   recurrence?: { frequency: "monthly"; weekday: 4; occurrence: 3; time: "19:00"; timeZone: "Europe/Berlin" };
 }
 export const site = {
@@ -285,21 +286,26 @@ export const posts: Post[] = [
 export const events: Event[] = [
   {
     id: "event-dhv-november", slug: "zweites-dhv-treffen-19-november-2026",
-    title: "Zweites offenes DHV-Treffen in Kassel", type: "Offenes Ortsgruppentreffen",
+    title: "Kassel braucht dich: zweites offenes DHV-Treffen", type: "Offenes Ortsgruppentreffen",
     status: "announced", phase: "upcoming",
     date: "2026-11-19", startsAt: "2026-11-19T19:00:00+01:00", endsAt: null,
     dateLabel: "Donnerstag, 19. November 2026", timeLabel: monthlyMeeting.timeLabel,
     location: monthlyMeeting.location,
+    announcementUrl: site.instagramUrl,
+    externalLink: { label: "Zum Beitrag auf Instagram", url: "https://www.instagram.com/p/Df4aMJDuKn-/" },
     flyer: {
       src: "/images/events/dhv-treffen-19-november-2026.webp",
-      alt: "Flyer: Offenes Treffen der DHV-Ortsgruppe Kassel am 19. November 2026 ab 19 Uhr im Haze & Chill Café.",
+      alt: "Flyer: Kassel braucht dich! Offenes Treffen der DHV-Ortsgruppe Kassel am 19. November 2026 ab 19:00 Uhr im Haze & Chill Café, Kölnische Straße 12–14, 34117 Kassel.",
       caption: "Flyer zum zweiten offenen DHV-Treffen", credit: "Für diese Website bereitgestellt",
-      width: 1122, height: 1402, fit: "contain",
+      width: 1024, height: 1024, fit: "contain",
     },
-    reportLabel: "Datum, Uhrzeit und Themen laut bereitgestelltem Veranstaltungsflyer.",
-    participationNote: "Offener Austausch. Kein Vorwissen nötig. Der Flyer nennt keine Anmeldung oder Gebühr.",
-    description: "News aus Berlin, die nächsten Schritte für Kassel und offener Austausch. Kein Vorwissen nötig.",
-    body: [{ heading: "Was ansteht", text: "Beim zweiten offenen Treffen sprechen wir über Neuigkeiten aus Berlin und die nächsten Schritte für Kassel. Wer die Gruppe kennenlernen oder eigene Ideen einbringen möchte, kann zum offenen Austausch vorbeikommen." }],
+    reportLabel: "Datum, Uhrzeit, freier Eintritt und Themen laut bereitgestelltem Veranstaltungsflyer und Instagram-Ankündigung.",
+    participationNote: "Eintritt frei – alle willkommen! Kein Vorwissen nötig, offener Austausch mit Gleichgesinnten.",
+    description: "Für alle, die etwas verändern wollen: News aus Berlin, die nächsten Schritte für Kassel, offener Austausch & Community. Eintritt frei – kein Vorwissen nötig.",
+    body: [
+      { heading: "Was ansteht", text: "Am Donnerstag, 19. November 2026, trifft sich die DHV-Ortsgruppe Kassel ab 19:00 Uhr im Haze & Chill Café zum nächsten offenen Treffen. Auf dem Programm stehen News aus Berlin, die nächsten Schritte für Kassel sowie offener Austausch & Community." },
+      { heading: "Teilnahme & Eintritt", text: "Eintritt frei – alle willkommen! Es ist kein Vorwissen nötig. Im Mittelpunkt steht der offene Austausch mit Gleichgesinnten: aufklären, vernetzen, verändern." },
+    ],
   },
   {
     id: "event-canna-cup-november", slug: "zweiter-canna-cup-6-november-2026",

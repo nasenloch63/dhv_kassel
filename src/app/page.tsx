@@ -41,7 +41,10 @@ export default function Home() {
         <h2>{nextMeeting.title}</h2>
         <p className="next-event-date"><strong>{nextMeeting.dateLabel} · {nextMeeting.timeLabel}</strong><span>{nextMeeting.location}</span></p>
         <p>{nextMeeting.description}</p>
-        <div className="next-event-actions"><ButtonLink href={`/veranstaltungen/${nextMeeting.slug}/`}>Zum Veranstaltungseintrag</ButtonLink></div>
+        <div className="next-event-actions">
+          <ButtonLink href={`/veranstaltungen/${nextMeeting.slug}/`}>Zum Veranstaltungseintrag</ButtonLink>
+          {nextMeeting.externalLink && <InstagramButton href={nextMeeting.externalLink.url}>{nextMeeting.externalLink.label}</InstagramButton>}
+        </div>
       </div>
     </div></section>}
     <WhatsAppBand />
