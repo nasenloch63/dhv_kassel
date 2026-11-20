@@ -1,6 +1,34 @@
-import { HeartHandshake } from "lucide-react";
+import Image from "next/image";
 import { ButtonLink } from "./ui";
 
 export function SupportBand() {
-  return <section className="support-home"><div className="container support-home-inner"><HeartHandshake size={34} strokeWidth={1.5} aria-hidden="true" /><div><p className="eyebrow">DEN BUNDESVERBAND STÄRKEN</p><h2>Gemeinsam für Aufklärung.</h2><p>Mit Förderung, einer Spende oder deinem Engagement vor Ort.</p></div><ButtonLink href="/unterstuetzen/">Den DHV unterstützen</ButtonLink></div></section>;
+  return (
+    <section className="dhv-section-wrap">
+      <div className="container">
+        <div className="dhv-box dhv-box-secondary dhv-split-box">
+          <div className="dhv-split-art">
+            <Image
+              src="/images/dhv/support/foerdern.png"
+              alt="Icon DHV Unterstützen"
+              width={260}
+              height={200}
+              className="dhv-support-illustration"
+            />
+          </div>
+          <div className="dhv-split-copy">
+            <h2>Man muss die Pflanze gießen, damit sie wächst!</h2>
+            <p>
+              Als privater DHV-Förderer kannst du die Legalisierung mit einem regelmäßigen Beitrag
+              vorantreiben und erhältst bestimmte, exklusive Leistungen. Oder du unterstützt den
+              Deutschen Hanfverband mit einer einmaligen Spende oder deinem Engagement vor Ort in
+              Kassel.
+            </p>
+            <div className="dhv-split-actions">
+              <ButtonLink href="/unterstuetzen/">Unterstützen</ButtonLink>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }

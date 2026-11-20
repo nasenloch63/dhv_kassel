@@ -1,6 +1,25 @@
-import { MessageCircle } from "lucide-react";
 import { WhatsAppButton } from "./whatsapp-button";
+import { FacebookButton } from "./facebook-button";
+import { InstagramButton } from "./instagram-button";
 
 export function WhatsAppBand() {
-  return <section className="whatsapp-band"><div className="container whatsapp-band-inner"><MessageCircle size={30} strokeWidth={1.5} aria-hidden="true" /><div><p className="eyebrow">NEU: UNSER WHATSAPP-KANAL</p><h2>News aus Kassel. Direkt im Kanal.</h2><p>Bleib mit den aktuellen Neuigkeiten der DHV-Ortsgruppe Kassel verbunden.</p></div><WhatsAppButton>WhatsApp-Kanal öffnen</WhatsAppButton></div></section>;
+  return (
+    <section className="dhv-section-wrap">
+      <div className="container">
+        <div className="dhv-box dhv-box-secondary dhv-info-box">
+          <h2>Kassel-Info: Nichts mehr verpassen</h2>
+          <p>
+            Immer auf dem Laufenden bleiben mit den aktuellen Neuigkeiten, Rückblicken und
+            Terminen der DHV-Ortsgruppe Kassel – direkt in unserem WhatsApp-Kanal sowie auf
+            Facebook und Instagram.
+          </p>
+          <div className="dhv-info-actions">
+            <WhatsAppButton>WhatsApp-Kanal öffnen</WhatsAppButton>
+            <InstagramButton />
+            <FacebookButton />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }
