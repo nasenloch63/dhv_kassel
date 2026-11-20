@@ -4,10 +4,14 @@ import { HeartHandshake, MapPin, CalendarDays } from "lucide-react";
 import { PageIntro, ButtonLink, DemoNote } from "@/components/ui";
 import { supportOptions, supportSource } from "@/data/support";
 import { monthlyMeeting } from "@/data/content";
+import { DEFAULT_OG_IMAGE } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Den DHV unterstützen",
-  description: "Regelmäßig fördern, einmalig spenden, als Unternehmen oder CSC unterstützen und den DHV-Shop entdecken. Direkt zu den offiziellen Angeboten des Bundesverbands.",
+  title: "Den Deutschen Hanfverband unterstützen",
+  description: "Regelmäßig fördern, einmalig spenden, als Unternehmen oder CSC unterstützen und den DHV-Shop entdecken. Direkt zu den offiziellen Angeboten des Deutschen Hanfverbands.",
+  alternates: { canonical: "/unterstuetzen/" },
+  openGraph: { title: "Den DHV unterstützen | DHV-Ortsgruppe Kassel", description: "Regelmäßig fördern, spenden oder vor Ort in Kassel aktiv werden.", url: "/unterstuetzen/", images: [DEFAULT_OG_IMAGE] },
+  twitter: { card: "summary_large_image", title: "Den DHV unterstützen | DHV-Ortsgruppe Kassel", description: "Regelmäßig fördern, spenden oder vor Ort in Kassel aktiv werden.", images: [DEFAULT_OG_IMAGE.url] },
 };
 
 export default function SupportPage() {

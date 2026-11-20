@@ -8,18 +8,37 @@ import { WhatsAppButton } from "@/components/whatsapp-button";
 import { EventFlyer } from "@/components/event-flyer";
 import { events, site } from "@/data/content";
 import { StatusBadge, DemoNote, ButtonLink } from "@/components/ui";
+import { DEFAULT_OG_IMAGE, JsonLd, getEventJsonLd } from "@/lib/seo";
 export function generateStaticParams() { return events.map(event => ({ slug: event.slug })); }
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const event = events.find(event => event.slug === slug);
-  return { title: event?.title ?? "Veranstaltung nicht gefunden", description: event?.description };
+  if (!event) return { title: "Veranstaltung nicht gefunden" };
+  return {
+    title: event.title,
+    description: event.description,
+    alternates: { canonical: `/veranstaltungen/${event.slug}/` },
+    openGraph: {
+      title: event.title,
+      description: event.description,
+      type: "website",
+      url: `/veranstaltungen/${event.slug}/`,
+      images: [DEFAULT_OG_IMAGE],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: event.title,
+      description: event.description,
+      images: [DEFAULT_OG_IMAGE.url],
+    },
+  };
 }
 export default async function EventPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const event = events.find(event => event.slug === slug);
   if (!event) notFound();
   const isDemo = event.status === "demo";
-  return <article className="container event-detail">
+  return <><JsonLd data={getEventJsonLd(event)} /><article className="container event-detail">
     <Link href="/veranstaltungen/" className="back-link"><ArrowLeft size={17} />Alle Veranstaltungen</Link>
     <div className="event-detail-grid"><div>
       <header className="article-header"><div className="article-labels"><span className="category">{event.type}</span><StatusBadge status={event.status} /></div><h1>{event.title}</h1><p className="article-teaser">{event.description}</p></header>
@@ -40,5 +59,5 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
       <WhatsAppButton>Aktuelle News im WhatsApp-Kanal</WhatsAppButton>
       <ButtonLink href={site.datesUrl} external>Offizielle DHV-Termine</ButtonLink>
     </aside></div>
-  </article>;
+  </article></>;
 }

@@ -6,18 +6,38 @@ import { posts, formatDate } from "@/data/content";
 import { StatusBadge, DemoNote, PostVisual, PostCard, ButtonLink } from "@/components/ui";
 import { WhatsAppBand } from "@/components/whatsapp-band";
 import { MediaGallery, EventPhotoPlaceholders } from "@/components/media";
+import { DEFAULT_OG_IMAGE, JsonLd, getArticleJsonLd } from "@/lib/seo";
 export function generateStaticParams() { return posts.map(post => ({ slug: post.slug })); }
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const post = posts.find(post => post.slug === slug);
-  return { title: post?.title ?? "Beitrag nicht gefunden", description: post?.teaser,
-    ...(post?.image ? { openGraph: { title: post.title, description: post.teaser, type: "article", images: [{ url: post.image.src, width: post.image.width, height: post.image.height, alt: post.image.alt }] }, twitter: { card: "summary_large_image", title: post.title, description: post.teaser, images: [post.image.src] } } : {}) };
+  if (!post) return { title: "Beitrag nicht gefunden" };
+  return {
+    title: post.title,
+    description: post.teaser,
+    alternates: { canonical: `/news/${post.slug}/` },
+    openGraph: {
+      title: post.title,
+      description: post.teaser,
+      type: "article",
+      url: `/news/${post.slug}/`,
+      publishedTime: post.date,
+      images: [DEFAULT_OG_IMAGE],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.teaser,
+      images: [DEFAULT_OG_IMAGE.url],
+    },
+  };
 }
 export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const post = posts.find(post => post.slug === slug);
   if (!post) notFound();
   return <>
+    <JsonLd data={getArticleJsonLd(post)} />
     <article className="container article-page">
       <Link className="back-link" href="/news/"><ArrowLeft size={17} />Alle Beiträge</Link>
       <header className="article-header">
